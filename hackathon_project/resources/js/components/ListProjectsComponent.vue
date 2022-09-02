@@ -32,7 +32,7 @@
                     </v-img>
 
                     <v-card-subtitle class="pb-0">
-                        Descripcion del projecto
+                        Descripcion del proyecto
                     </v-card-subtitle>
 
                     <v-card-text class="text--primary">
@@ -46,7 +46,7 @@
                             color="orange"
                             text
                         >
-                            Unirse al projecto
+                            Unirse al proyecto
                         </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -57,7 +57,7 @@
             class="ma-2"
             color="success"
             >
-                Ver todos los projectos
+                Ver todos los proyectos
             </v-btn>
         </div>
 
@@ -69,7 +69,7 @@
     export default {
         data (){
             return {
-                projects: ['Projecto 1', 'Projecto 2', 'Projecto 3', 'Projecto 4', 'Projecto 5', 'Projecto 6']
+                projects: ['Proyecto 1', 'Proyecto 2', 'Proyecto 3', 'Proyecto 4', 'Proyecto 5', 'Proyecto 6']
             }
         }
     }
