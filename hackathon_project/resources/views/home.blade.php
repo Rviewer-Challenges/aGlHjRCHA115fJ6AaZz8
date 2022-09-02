@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <search-component></search-component>
+    <!--<search-component></search-component>-->
 
     <div class="title_container">
         <p class="title_home">@lang('views.title_home')</p>

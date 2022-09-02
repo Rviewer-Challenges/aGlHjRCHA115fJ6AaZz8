@@ -28,15 +28,15 @@
                     height="150px"
                     src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
                     >
-                        <v-card-title>{{project}}</v-card-title>
+                        <v-card-title>{{project.title}}</v-card-title>
                     </v-img>
 
                     <v-card-subtitle class="pb-0">
-                        Descripcion del proyecto
+                        {{project.description}}
                     </v-card-subtitle>
 
                     <v-card-text class="text--primary">
-                        <div>.......</div>
+                        <div>Finaliza el {{project.expiration_date}}</div>
 
                         <div>........</div>
                     </v-card-text>
@@ -69,8 +69,19 @@
     export default {
         data (){
             return {
-                projects: ['Proyecto 1', 'Proyecto 2', 'Proyecto 3', 'Proyecto 4', 'Proyecto 5', 'Proyecto 6']
+                projects: null,
             }
+        },
+
+        created() {
+            this.getProjects();
+        },
+
+        methods: {
+            async getProjects() {
+                await axios.get('http://127.0.0.1:8000/projects')
+                .then(response => this.projects = response.data)
+            },
         }
     }
 </script>
