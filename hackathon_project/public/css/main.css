@@ -1,0 +1,27 @@
+div .title_container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.title_home {
+    border: 0 solid #E2E8F0;
+    box-sizing: border-box;
+    color: #1A202C;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 21px;
+    margin: 0;
+    outline: none;
+    overflow-wrap: break-word;
+}
+
+.subtitle_home {
+    box-sizing: inherit;
+    color: #191C1E;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 24px;
+    text-align: center;
+}

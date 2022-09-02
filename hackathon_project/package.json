@@ -21,10 +21,11 @@
         "sass": "^1.54.8",
         "sass-loader": "^11.1.1",
         "vue": "^2.6.12",
-        "vue-loader": "^15.9.8",
+        "vue-loader": "^15.10.0",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "material-design-icons-iconfont": "^6.7.0",
         "vuetify": "^2.6.9"
     }
 }
