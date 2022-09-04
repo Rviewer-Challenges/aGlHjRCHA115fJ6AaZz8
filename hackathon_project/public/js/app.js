@@ -5375,7 +5375,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      projects: null
+      projects: []
     };
   },
   created: function created() {
@@ -5393,6 +5393,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return axios.get('http://127.0.0.1:8000/projects').then(function (response) {
                   return _this.projects = response.data;
+                })["catch"](function (error) {
+                  console.log(error.toJSON());
                 });
 
               case 2:
@@ -5555,7 +5557,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
+  return _c("div", [_vm.projects.length <= 0 ? _c("div", {
+    staticClass: "message_not_projects"
+  }, [_c("strong", [_vm._v("Actualmente no hay proyectos que podamos mostrarte. ¡Animate y se el primero!")])]) : _c("div", {
     staticClass: "container_list_projects"
   }, _vm._l(_vm.projects, function (project, index) {
     return _c("v-card", {
@@ -5568,24 +5572,31 @@ var render = function render() {
       staticClass: "white--text align-end",
       attrs: {
         height: "150px",
-        src: "https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+        src: "/images/project_card_img.jpg"
       }
     }, [_c("v-card-title", [_vm._v(_vm._s(project.title))])], 1), _vm._v(" "), _c("v-card-subtitle", {
-      staticClass: "pb-0"
-    }, [_vm._v("\n                    " + _vm._s(project.description) + "\n                ")]), _vm._v(" "), _c("v-card-text", {
+      staticClass: "pb-0",
+      staticStyle: {
+        height: "82px"
+      }
+    }, [_vm._v("\n                    " + _vm._s(project.short_description) + "\n                ")]), _vm._v(" "), _c("v-divider", {
+      staticStyle: {
+        "margin-top": "15px"
+      }
+    }), _vm._v(" "), _c("v-card-text", {
       staticClass: "text--primary"
-    }, [_c("div", [_vm._v("Finaliza el " + _vm._s(project.expiration_date))]), _vm._v(" "), _c("div", [_vm._v("........")])]), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
+    }, [_c("strong", [_vm._v("Sitios disponibles: " + _vm._s(project.current_team) + "/" + _vm._s(project.total_team))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Finaliza el: " + _vm._s(project.expiration_date))])]), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
       attrs: {
-        color: "orange",
+        color: "#5e9ba0",
         text: ""
       }
     }, [_vm._v("\n                        Unirse al proyecto\n                    ")])], 1)], 1);
   }), 1), _vm._v(" "), _c("div", {
     staticClass: "custom_container_btn"
   }, [_c("v-btn", {
-    staticClass: "ma-2",
+    staticClass: "ma-2 black--text",
     attrs: {
-      color: "success"
+      color: "#F9BE01"
     }
   }, [_vm._v("\n            Ver todos los proyectos\n        ")])], 1)]);
 };
@@ -11119,7 +11130,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container_list_projects {\n    display: flex;\n    justify-content: center;\n    flex-wrap: wrap;\n}\n.custom_card {\n    margin-top: 20px;\n    margin-bottom: 20px;\n}\n.custom_container_btn {\n    margin-top: 30px;\n    margin-bottom: 30px;\n    display: flex;\n    justify-content: center;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container_list_projects {\n    display: flex;\n    justify-content: center;\n    flex-wrap: wrap;\n}\n.custom_card {\n    margin-top: 20px;\n    margin-bottom: 20px;\n}\n.custom_container_btn {\n    margin-top: 30px;\n    margin-bottom: 30px;\n    display: flex;\n    justify-content: center;\n}\n.message_not_projects {\n    display: flex;\n    justify-content: center;\n    margin-top: 20px;\n    color: #F9BE01;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

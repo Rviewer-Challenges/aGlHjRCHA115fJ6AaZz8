@@ -17,33 +17,48 @@
         justify-content: center;
     }
 
+    .message_not_projects {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        color: #F9BE01;
+    }
+
 </style>
 
 <template>
     <div>
-        <div class="container_list_projects">
+        <div class="message_not_projects" v-if="projects.length <= 0">
+            <strong>Actualmente no hay proyectos que podamos mostrarte. ¡Animate y se el primero!</strong>
+        </div>
+
+        <div v-else class="container_list_projects">
             <v-card class="mx-auto custom_card" max-width="300" v-for="(project, index) in projects" :key="index">
                     <v-img
                     class="white--text align-end"
                     height="150px"
-                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                    :src="'/images/project_card_img.jpg'"
                     >
-                        <v-card-title>{{project.title}}</v-card-title>
+
+                    <v-card-title>{{project.title}}</v-card-title>
+
                     </v-img>
 
-                    <v-card-subtitle class="pb-0">
-                        {{project.description}}
+                    <v-card-subtitle class="pb-0" style="height: 82px;">
+                        {{project.short_description}}
                     </v-card-subtitle>
 
-                    <v-card-text class="text--primary">
-                        <div>Finaliza el {{project.expiration_date}}</div>
+                    <v-divider style="margin-top: 15px;"></v-divider>
 
-                        <div>........</div>
+                    <v-card-text class="text--primary">
+                        <strong>Sitios disponibles: {{project.current_team}}/{{project.total_team}}</strong>
+                        <br>
+                        <strong>Finaliza el: {{project.expiration_date}}</strong>
                     </v-card-text>
 
                     <v-card-actions>
                         <v-btn
-                            color="orange"
+                            color="#5e9ba0"
                             text
                         >
                             Unirse al proyecto
@@ -54,8 +69,8 @@
 
         <div class="custom_container_btn">
             <v-btn
-            class="ma-2"
-            color="success"
+            class="ma-2 black--text"
+            color="#F9BE01"
             >
                 Ver todos los proyectos
             </v-btn>
@@ -69,7 +84,7 @@
     export default {
         data (){
             return {
-                projects: null,
+                projects: [],
             }
         },
 
@@ -81,6 +96,9 @@
             async getProjects() {
                 await axios.get('http://127.0.0.1:8000/projects')
                 .then(response => this.projects = response.data)
+                .catch(function (error) {
+                    console.log(error.toJSON());
+                });
             },
         }
     }

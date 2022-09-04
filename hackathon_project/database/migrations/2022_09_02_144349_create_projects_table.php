@@ -17,10 +17,12 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('title', 100)->nullable(false);
+            $table->string('title', 25)->nullable(false);
             $table->text('description')->nullable(false);
+            $table->string('short_description', 80)->nullable(false);
             $table->text('motivation')->nullable(false);
             $table->text('requirements')->nullable(false);
+            $table->integer('current_team')->default(0);
             $table->integer('total_team')->nullable(false);
             $table->boolean('active')->default(0);
             $table->date('expiration_date')->nullable(false);
