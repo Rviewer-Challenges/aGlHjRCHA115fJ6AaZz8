@@ -82,6 +82,8 @@
 
 <script>
     export default {
+        props: ['baseUrl'],
+
         data (){
             return {
                 projects: [],
@@ -94,7 +96,7 @@
 
         methods: {
             async getProjects() {
-                await axios.get('http://127.0.0.1:8000/projects')
+                await axios.get(this.baseUrl)
                 .then(response => this.projects = response.data)
                 .catch(function (error) {
                     console.log(error.toJSON());

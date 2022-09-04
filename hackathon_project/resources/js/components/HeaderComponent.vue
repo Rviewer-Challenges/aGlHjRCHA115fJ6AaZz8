@@ -62,7 +62,7 @@
         <v-spacer></v-spacer>
 
         <button class="btn-custom">
-            <v-icon color="black">mdi-plus-box-outline</v-icon> Publicar
+            Publicar
         </button>
 
         <button class="btn-login">
