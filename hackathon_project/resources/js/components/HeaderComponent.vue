@@ -58,7 +58,10 @@
         color="white"
         elevate-on-scroll
       >
-        <v-toolbar-title>UNION TASK</v-toolbar-title>
+        <a :href="'/'" style="text-decoration:none; color:black;">
+            <v-toolbar-title>UNION TASK</v-toolbar-title>
+        </a>
+
         <v-spacer></v-spacer>
 
         <button class="btn-custom">

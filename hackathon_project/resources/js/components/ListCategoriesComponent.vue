@@ -63,7 +63,7 @@
 
         methods: {
             async getCategories() {
-                await axios.get(this.baseUrl)
+                await axios.get(this.baseUrl + '/categories')
                 .then(response => this.categories = response.data)
                 .catch(function (error) {
                     console.log(error.toJSON());

@@ -19,5 +19,5 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/projects', [ProjectController::class, 'index'])->name('api.projects');
-Route::get('/categories', [CategoryController::class, 'index'])->name('api.categories');
+Route::resource('/projects', ProjectController::class);
+Route::resource('/categories', CategoryController::class);
