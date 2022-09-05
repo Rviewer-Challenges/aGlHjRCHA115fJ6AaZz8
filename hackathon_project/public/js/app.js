@@ -5371,7 +5371,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get(_this.baseUrl).then(function (response) {
+                return axios.get(_this.baseUrl + '/categories').then(function (response) {
                   return _this.categories = response.data;
                 })["catch"](function (error) {
                   console.log(error.toJSON());
@@ -5413,10 +5413,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ['baseUrl'],
   data: function data() {
     return {
-      projects: []
+      projects: [],
+      urlProject: null
     };
   },
   created: function created() {
+    this.urlProject = this.baseUrl + '/projects/';
     this.getProjects();
   },
   methods: {
@@ -5429,7 +5431,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get(_this.baseUrl).then(function (response) {
+                return axios.get(_this.urlProject).then(function (response) {
                   return _this.projects = response.data;
                 })["catch"](function (error) {
                   console.log(error.toJSON());
@@ -5528,7 +5530,15 @@ var render = function render() {
       color: "white",
       "elevate-on-scroll": ""
     }
-  }, [_c("v-toolbar-title", [_vm._v("UNION TASK")]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("button", {
+  }, [_c("a", {
+    staticStyle: {
+      "text-decoration": "none",
+      color: "black"
+    },
+    attrs: {
+      href: "/"
+    }
+  }, [_c("v-toolbar-title", [_vm._v("UNION TASK")])], 1), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("button", {
     staticClass: "btn-custom"
   }, [_vm._v("\n        Publicar\n    ")]), _vm._v(" "), _c("button", {
     staticClass: "btn-login"
@@ -5622,9 +5632,10 @@ var render = function render() {
     }, [_c("strong", [_vm._v("Sitios disponibles: " + _vm._s(project.current_team) + "/" + _vm._s(project.total_team))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Finaliza el: " + _vm._s(project.expiration_date))])]), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
       attrs: {
         color: "#5e9ba0",
-        text: ""
+        text: "",
+        href: _vm.urlProject + project.id
       }
-    }, [_vm._v("\n                        Unirse al proyecto\n                    ")])], 1)], 1);
+    }, [_vm._v("\n                            Unirse al proyecto\n                        ")])], 1)], 1);
   }), 1), _vm._v(" "), _c("div", {
     staticClass: "custom_container_btn"
   }, [_c("v-btn", {

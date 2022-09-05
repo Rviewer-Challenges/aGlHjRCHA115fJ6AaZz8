@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" >
+        <link href="{{ asset('css/show_project.css') }}" rel="stylesheet" type="text/css" >
         <title>UNION TASK</title>
     </head>
     <body>

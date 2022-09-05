@@ -58,11 +58,12 @@
 
                     <v-card-actions>
                         <v-btn
-                            color="#5e9ba0"
-                            text
-                        >
-                            Unirse al proyecto
-                        </v-btn>
+                                color="#5e9ba0"
+                                text
+                                :href="urlProject + project.id"
+                            >
+                                Unirse al proyecto
+                            </v-btn>
                     </v-card-actions>
                 </v-card>
         </div>
@@ -87,16 +88,18 @@
         data (){
             return {
                 projects: [],
+                urlProject: null,
             }
         },
 
         created() {
+            this.urlProject = this.baseUrl + '/projects/';
             this.getProjects();
         },
 
         methods: {
             async getProjects() {
-                await axios.get(this.baseUrl)
+                await axios.get(this.urlProject)
                 .then(response => this.projects = response.data)
                 .catch(function (error) {
                     console.log(error.toJSON());

@@ -14,7 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::where('active', 1)->orderBy("id", 'DESC')->take(6)->get();
         return $projects;
     }
 
@@ -47,7 +47,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('projects.show')->with('project', $project);
     }
 
     /**
