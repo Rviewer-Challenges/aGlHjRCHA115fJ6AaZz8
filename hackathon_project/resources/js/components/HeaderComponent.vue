@@ -66,13 +66,21 @@
 
         <a :href="'/projects/create'">
             <button class="btn-custom">
-                Publicar
+                Crear proyecto
             </button>
         </a>
 
-        <button class="btn-login">
-            Iniciar sesión
-        </button>
+        <a href="/" v-if="auth">
+            <button class="btn-login">
+                Mi cuenta
+            </button>
+        </a>
+
+        <a href="/login" v-else>
+            <button class="btn-login">
+                Iniciar sesión
+            </button>
+        </a>
 
       </v-app-bar>
 
@@ -81,5 +89,6 @@
 
 <script>
     export default {
+        props: ['auth']
     }
 </script>
