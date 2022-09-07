@@ -25,3 +25,56 @@ div .title_container {
     margin: 0 0 24px;
     text-align: center;
 }
+
+.div_input {
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: inherit;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 3px 1px -2px, rgba(0, 0, 0, 0.14) 0 2px 2px 0, rgba(0, 0, 0, 0.12) 0 1px 5px 0;
+    box-sizing: inherit;
+    color: currentcolor;
+    cursor: text;
+    display: flex;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    letter-spacing: normal;
+    line-height: 1.5;
+    margin: 0 0 8px;
+    min-height: 48px;
+    padding: 0 12px;
+    position: relative;
+    tab-size: 4;
+    text-align: left;
+    transition-delay: 0s;
+    transition-duration: .3s;
+    transition-property: height, min-height;
+    transition-timing-function: cubic-bezier(.25, 0.8, 0.5, 1);
+    width: 100%;
+    word-break: normal;
+}
+
+.test {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    border-style: none;
+    box-sizing: inherit;
+    caret-color: auto;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: text;
+    flex: 1 1 auto;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-weight: inherit;
+    letter-spacing: normal;
+    line-height: 20px;
+    margin: 0;
+    max-height: 32px;
+    max-width: 100%;
+    min-width: 0;
+    padding: 8px 0;
+    tab-size: 4;
+    text-align: left;
+    width: 100%;
+    word-break: normal;
+}

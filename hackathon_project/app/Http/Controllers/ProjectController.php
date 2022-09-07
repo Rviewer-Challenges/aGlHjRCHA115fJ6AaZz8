@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
+use App\Models\User;
+use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProjectController extends Controller
 {
@@ -25,7 +30,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -36,7 +41,36 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_exists = User::where('email', $request['email'])->first();
+
+        if($user_exists) {
+            return view('projects.create', ['message' => __('views.user_created',), 'status' => 'error']);
+        }
+
+        try{
+
+            $new_user = User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make(rand(100000, 999999))
+            ]);
+
+            $new_project = Project::create([
+                'user_id' => $new_user['id'],
+                'title' => $request['title'],
+                'description' => $request['description'],
+                'short_description' => $request['short_description'],
+                'motivation' => $request['motivation'],
+                'requirements' => $request['requirements'],
+                'total_team' => intval( $request['total_team']),
+                'active' => 1,
+            ]);
+
+        }catch(Exception $e){
+            return view('projects.create', ['message' => __('views.error_create_project',), 'status' => 'error']);
+        }
+
+        return view('projects.create', ['message' => __('views.success_create_project',), 'status' => 'success']);
     }
 
     /**

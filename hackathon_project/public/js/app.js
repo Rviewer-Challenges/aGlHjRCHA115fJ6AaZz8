@@ -5302,6 +5302,86 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CreateProjectFormComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CreateProjectFormComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['message', 'status'],
+  data: function data() {
+    return {
+      valid: true,
+      title: '',
+      name: '',
+      email: '',
+      total_team: '',
+      short_description: '',
+      description: '',
+      motivation: '',
+      requirements: '',
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      titleRules: [function (v) {
+        return !!v || 'Nombre del proyecto es obligatorio';
+      }, function (v) {
+        return v.length <= 25 || 'Nombre del proyecto debe tener máximo 25 caracteres';
+      }],
+      nameRules: [function (v) {
+        return !!v || 'Tu nombre es obligatorio';
+      }, function (v) {
+        return v.length <= 50 || 'Tu nombre debe tener máximo 50 caracteres';
+      }],
+      totalTeamRules: [function (v) {
+        return !!v || 'Número de integrantes es obligatorio';
+      }, function (v) {
+        return parseInt(v) < 26 || 'Máximo 25 desarrolladores en el equipo';
+      }],
+      emailRules: [function (v) {
+        return !!v || 'Correo electrónico es obligatorio';
+      }, function (v) {
+        return /.+@.+/.test(v) || 'Correo electrónico debe de ser válido';
+      }],
+      shortDescriptionRules: [function (v) {
+        return !!v || 'Descripción corta es obligatorio';
+      }, function (v) {
+        return v.length <= 80 || 'Descripción corta debe tener máximo 80 caracteres';
+      }],
+      descriptionRules: [function (v) {
+        return !!v || 'Descripción del proyecto es obligatorio';
+      }, function (v) {
+        return v.length <= 1200 || 'Descripción del proyecto debe tener máximo 1200 caracteres';
+      }],
+      motivationRules: [function (v) {
+        return !!v || 'Proposito del proyecto es obligatorio';
+      }, function (v) {
+        return v.length <= 1200 || 'Proposito del proyecto debe tener máximo 1200 caracteres';
+      }],
+      requirementsRules: [function (v) {
+        return !!v || 'Requisitos del proyecto es obligatorio';
+      }, function (v) {
+        return v.length <= 1200 || 'Requisitos del proyecto debe tener máximo 1200 caracteres';
+      }]
+    };
+  },
+  methods: {
+    validate: function validate() {
+      var is_valid = this.$refs.form.validate();
+
+      if (is_valid) {
+        this.$refs.form.$el.submit();
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FooterComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FooterComponent.vue?vue&type=script&lang=js& ***!
@@ -5465,6 +5545,277 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CreateProjectFormComponent.vue?vue&type=template&id=1c0279c7&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CreateProjectFormComponent.vue?vue&type=template&id=1c0279c7& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("v-form", {
+    ref: "form",
+    attrs: {
+      "lazy-validation": "",
+      method: "POST",
+      action: "/projects"
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.validate.apply(null, arguments);
+      }
+    },
+    model: {
+      value: _vm.valid,
+      callback: function callback($$v) {
+        _vm.valid = $$v;
+      },
+      expression: "valid"
+    }
+  }, [_c("input", {
+    attrs: {
+      type: "hidden",
+      name: "_token"
+    },
+    domProps: {
+      value: _vm.csrf
+    }
+  }), _vm._v(" "), _c("v-container", {
+    staticClass: "mt-10"
+  }, [_c("v-row", [_c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_vm.status == "error" ? _c("v-alert", {
+    attrs: {
+      shaped: "",
+      prominent: "",
+      type: "error",
+      dismissible: "",
+      color: "error",
+      border: "left",
+      elevation: "2",
+      "colored-border": ""
+    }
+  }, [_vm._v("\n                " + _vm._s(_vm.message) + "\n            ")]) : _vm.status == "success" ? _c("v-alert", {
+    attrs: {
+      shaped: "",
+      prominent: "",
+      dismissible: "",
+      color: "success",
+      border: "left",
+      elevation: "2",
+      "colored-border": ""
+    }
+  }, [_vm._v("\n                " + _vm._s(_vm.message) + "\n            ")]) : _vm._e()], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "6"
+    }
+  }, [_c("v-text-field", {
+    attrs: {
+      name: "title",
+      rules: _vm.titleRules,
+      counter: 25,
+      label: "Nombre del proyecto",
+      solo: "",
+      hint: "Nombre del proyecto",
+      required: ""
+    },
+    model: {
+      value: _vm.title,
+      callback: function callback($$v) {
+        _vm.title = $$v;
+      },
+      expression: "title"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "6"
+    }
+  }, [_c("v-text-field", {
+    attrs: {
+      name: "name",
+      rules: _vm.nameRules,
+      counter: 50,
+      label: "Tu nombre",
+      solo: "",
+      hint: "Tu nombre",
+      required: ""
+    },
+    model: {
+      value: _vm.name,
+      callback: function callback($$v) {
+        _vm.name = $$v;
+      },
+      expression: "name"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "6"
+    }
+  }, [_c("v-text-field", {
+    attrs: {
+      name: "email",
+      rules: _vm.emailRules,
+      label: "Correo electrónico (Se usara para iniciar sesión)",
+      solo: "",
+      hint: "Correo electrónico (Se usara para iniciar sesión)",
+      required: ""
+    },
+    model: {
+      value: _vm.email,
+      callback: function callback($$v) {
+        _vm.email = $$v;
+      },
+      expression: "email"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "6"
+    }
+  }, [_c("v-text-field", {
+    attrs: {
+      name: "total_team",
+      label: "Número máximo de integrantes para el equipo",
+      rules: _vm.totalTeamRules,
+      type: "number",
+      "single-line": "",
+      solo: "",
+      hint: "Número máximo de integrantes para el equipo",
+      required: ""
+    },
+    model: {
+      value: _vm.total_team,
+      callback: function callback($$v) {
+        _vm.total_team = $$v;
+      },
+      expression: "total_team"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-textarea", {
+    attrs: {
+      name: "short_description",
+      rules: _vm.shortDescriptionRules,
+      counter: 80,
+      label: "Descripción corta (Se mostrara en la tarjeta de inicio)",
+      required: "",
+      solo: "",
+      hint: "Descripción corta (Se mostrara en la tarjeta de inicio)"
+    },
+    model: {
+      value: _vm.short_description,
+      callback: function callback($$v) {
+        _vm.short_description = $$v;
+      },
+      expression: "short_description"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-textarea", {
+    attrs: {
+      name: "description",
+      rules: _vm.descriptionRules,
+      counter: 1200,
+      label: "Descripción del proyecto",
+      solo: "",
+      hint: "Descripción del proyecto",
+      required: ""
+    },
+    model: {
+      value: _vm.description,
+      callback: function callback($$v) {
+        _vm.description = $$v;
+      },
+      expression: "description"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-textarea", {
+    attrs: {
+      name: "motivation",
+      rules: _vm.motivationRules,
+      counter: 1200,
+      label: "Proposito del proyecto. ¿Para que fín realizas el proyecto?",
+      solo: "",
+      hint: "Proposito del proyecto. ¿Para que fín realizas el proyecto?",
+      required: ""
+    },
+    model: {
+      value: _vm.motivation,
+      callback: function callback($$v) {
+        _vm.motivation = $$v;
+      },
+      expression: "motivation"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-textarea", {
+    attrs: {
+      name: "requirements",
+      rules: _vm.requirementsRules,
+      counter: 1200,
+      label: "Requisitos del proyecto. ¿Qué conocimientos necesitan los futuros integrantes?",
+      solo: "",
+      hint: "Requisitos del proyecto. ¿Qué conocimientos necesitan los futuros integrantes?",
+      required: ""
+    },
+    model: {
+      value: _vm.requirements,
+      callback: function callback($$v) {
+        _vm.requirements = $$v;
+      },
+      expression: "requirements"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-btn", {
+    staticClass: "mr-4 white--text",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      color: "rgb(94, 155, 160)",
+      type: "submit"
+    }
+  }, [_vm._v("\n            Crear proyecto\n            ")])], 1)], 1)], 1)], 1);
+};
+
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/FooterComponent.vue?vue&type=template&id=abfbddf2& ***!
@@ -5538,9 +5889,13 @@ var render = function render() {
     attrs: {
       href: "/"
     }
-  }, [_c("v-toolbar-title", [_vm._v("UNION TASK")])], 1), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("button", {
+  }, [_c("v-toolbar-title", [_vm._v("UNION TASK")])], 1), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/projects/create"
+    }
+  }, [_c("button", {
     staticClass: "btn-custom"
-  }, [_vm._v("\n        Publicar\n    ")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("\n            Publicar\n        ")])]), _vm._v(" "), _c("button", {
     staticClass: "btn-login"
   }, [_vm._v("\n        Iniciar sesión\n    ")])], 1)], 1);
 };
@@ -5777,6 +6132,7 @@ Vue.component('search-component', (__webpack_require__(/*! ./components/SearchCo
 Vue.component('list-projects-component', (__webpack_require__(/*! ./components/ListProjectsComponent.vue */ "./resources/js/components/ListProjectsComponent.vue")["default"]));
 Vue.component('list-categories-component', (__webpack_require__(/*! ./components/ListCategoriesComponent.vue */ "./resources/js/components/ListCategoriesComponent.vue")["default"]));
 Vue.component('footer-component', (__webpack_require__(/*! ./components/FooterComponent.vue */ "./resources/js/components/FooterComponent.vue")["default"]));
+Vue.component('create-project-component', (__webpack_require__(/*! ./components/CreateProjectFormComponent.vue */ "./resources/js/components/CreateProjectFormComponent.vue")["default"]));
 var app = new Vue({
   el: '#app',
   vuetify: _vuetify__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -29130,6 +29486,45 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./resources/js/components/CreateProjectFormComponent.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/CreateProjectFormComponent.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CreateProjectFormComponent_vue_vue_type_template_id_1c0279c7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateProjectFormComponent.vue?vue&type=template&id=1c0279c7& */ "./resources/js/components/CreateProjectFormComponent.vue?vue&type=template&id=1c0279c7&");
+/* harmony import */ var _CreateProjectFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateProjectFormComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CreateProjectFormComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateProjectFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateProjectFormComponent_vue_vue_type_template_id_1c0279c7___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CreateProjectFormComponent_vue_vue_type_template_id_1c0279c7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CreateProjectFormComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/FooterComponent.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/FooterComponent.vue ***!
@@ -29333,6 +29728,22 @@ component.options.__file = "resources/js/components/SearchComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/CreateProjectFormComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/CreateProjectFormComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateProjectFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateProjectFormComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CreateProjectFormComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateProjectFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/FooterComponent.vue?vue&type=script&lang=js&":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/FooterComponent.vue?vue&type=script&lang=js& ***!
@@ -29410,6 +29821,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SearchComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SearchComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateProjectFormComponent.vue?vue&type=template&id=1c0279c7&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/CreateProjectFormComponent.vue?vue&type=template&id=1c0279c7& ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateProjectFormComponent_vue_vue_type_template_id_1c0279c7___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateProjectFormComponent_vue_vue_type_template_id_1c0279c7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateProjectFormComponent_vue_vue_type_template_id_1c0279c7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateProjectFormComponent.vue?vue&type=template&id=1c0279c7& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CreateProjectFormComponent.vue?vue&type=template&id=1c0279c7&");
+
 
 /***/ }),
 

@@ -64,9 +64,11 @@
 
         <v-spacer></v-spacer>
 
-        <button class="btn-custom">
-            Publicar
-        </button>
+        <a :href="'/projects/create'">
+            <button class="btn-custom">
+                Publicar
+            </button>
+        </a>
 
         <button class="btn-login">
             Iniciar sesión
