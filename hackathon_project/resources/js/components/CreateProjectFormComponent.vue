@@ -57,6 +57,7 @@
             <v-col
                 cols="12"
                 md="6"
+                v-if="!hidden"
             >
                 <v-text-field
                     name="name"
@@ -73,6 +74,7 @@
             <v-col
                 cols="12"
                 md="6"
+                v-if="!hidden"
             >
                 <v-text-field
                     name="email"
@@ -186,7 +188,7 @@
 
 <script>
     export default {
-        props: ['message', 'status'],
+        props: ['message', 'status', 'auth'],
 
         data: () => ({
             valid: true,
@@ -198,6 +200,7 @@
             description: '',
             motivation: '',
             requirements: '',
+            hidden: false,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
             titleRules: [
@@ -233,6 +236,17 @@
             v => v.length <= 1200 || 'Requisitos del proyecto debe tener máximo 1200 caracteres',
             ],
         }),
+
+        created() {
+
+            if(this.auth){
+                this.hidden = true;
+            }else{
+                this.hidden = false;
+            }
+
+            console.log(this.hidden);
+        },
 
         methods: {
             validate () {

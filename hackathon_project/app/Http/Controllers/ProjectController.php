@@ -8,6 +8,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProjectController extends Controller
@@ -41,22 +42,29 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $user_exists = User::where('email', $request['email'])->first();
 
-        if($user_exists) {
-            return view('projects.create', ['message' => __('views.user_created',), 'status' => 'error']);
+        if($request['email']){
+            $user_exists = User::where('email', $request['email'])->first();
+
+            if($user_exists) {
+                return view('projects.create', ['message' => __('views.user_created',), 'status' => 'error']);
+            }
         }
 
         try{
 
-            $new_user = User::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make(rand(100000, 999999))
-            ]);
+            $user = Auth::user();
+
+            if(!$user){
+                $user = User::create([
+                    'name' => $request['name'],
+                    'email' => $request['email'],
+                    'password' => Hash::make(rand(100000, 999999))
+                ]);
+            }
 
             $new_project = Project::create([
-                'user_id' => $new_user['id'],
+                'user_id' => $user['id'],
                 'title' => $request['title'],
                 'description' => $request['description'],
                 'short_description' => $request['short_description'],

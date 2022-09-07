@@ -5314,7 +5314,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['message', 'status'],
+  props: ['message', 'status', 'auth'],
   data: function data() {
     return {
       valid: true,
@@ -5326,6 +5326,7 @@ __webpack_require__.r(__webpack_exports__);
       description: '',
       motivation: '',
       requirements: '',
+      hidden: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       titleRules: [function (v) {
         return !!v || 'Nombre del proyecto es obligatorio';
@@ -5369,6 +5370,15 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
+  created: function created() {
+    if (this.auth) {
+      this.hidden = true;
+    } else {
+      this.hidden = false;
+    }
+
+    console.log(this.hidden);
+  },
   methods: {
     validate: function validate() {
       var is_valid = this.$refs.form.validate();
@@ -5408,7 +5418,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['auth']
+});
 
 /***/ }),
 
@@ -5639,7 +5651,7 @@ var render = function render() {
       },
       expression: "title"
     }
-  })], 1), _vm._v(" "), _c("v-col", {
+  })], 1), _vm._v(" "), !_vm.hidden ? _c("v-col", {
     attrs: {
       cols: "12",
       md: "6"
@@ -5661,7 +5673,7 @@ var render = function render() {
       },
       expression: "name"
     }
-  })], 1), _vm._v(" "), _c("v-col", {
+  })], 1) : _vm._e(), _vm._v(" "), !_vm.hidden ? _c("v-col", {
     attrs: {
       cols: "12",
       md: "6"
@@ -5682,7 +5694,7 @@ var render = function render() {
       },
       expression: "email"
     }
-  })], 1), _vm._v(" "), _c("v-col", {
+  })], 1) : _vm._e(), _vm._v(" "), _c("v-col", {
     attrs: {
       cols: "12",
       md: "6"
@@ -5895,9 +5907,19 @@ var render = function render() {
     }
   }, [_c("button", {
     staticClass: "btn-custom"
-  }, [_vm._v("\n            Publicar\n        ")])]), _vm._v(" "), _c("button", {
+  }, [_vm._v("\n            Crear proyecto\n        ")])]), _vm._v(" "), _vm.auth ? _c("a", {
+    attrs: {
+      href: "/"
+    }
+  }, [_c("button", {
     staticClass: "btn-login"
-  }, [_vm._v("\n        Iniciar sesión\n    ")])], 1)], 1);
+  }, [_vm._v("\n            Mi cuenta\n        ")])]) : _c("a", {
+    attrs: {
+      href: "/login"
+    }
+  }, [_c("button", {
+    staticClass: "btn-login"
+  }, [_vm._v("\n            Iniciar sesión\n        ")])])], 1)], 1);
 };
 
 var staticRenderFns = [];
