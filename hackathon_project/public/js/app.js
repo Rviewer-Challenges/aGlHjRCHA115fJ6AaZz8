@@ -5478,6 +5478,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    redirect: function redirect(slug) {
+      window.location = 'search/' + slug;
     }
   }
 });
@@ -5504,19 +5507,19 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['baseUrl'],
+  props: ['api', 'pagination'],
   data: function data() {
     return {
       projects: [],
-      urlProject: null
+      page: 1,
+      perPage: 12
     };
   },
   created: function created() {
-    this.urlProject = this.baseUrl + '/projects/';
     this.getProjects();
   },
   methods: {
-    getProjects: function getProjects() {
+    getProjects: function getProjects(pagination) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -5525,8 +5528,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get(_this.urlProject).then(function (response) {
-                  return _this.projects = response.data;
+                return axios.get(_this.api).then(function (response) {
+                  _this.projects = response.data;
+
+                  if (_this.pagination == 1) {
+                    _this.projects = _this.projects_visible;
+                  }
                 })["catch"](function (error) {
                   console.log(error.toJSON());
                 });
@@ -5538,6 +5545,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    }
+  },
+  computed: {
+    projects_visible: function projects_visible() {
+      return this.projects.slice((this.page - 1) * this.perPage, this.page * this.perPage);
     }
   }
 });
@@ -5555,7 +5567,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      isLoading: false,
+      items: [],
+      model: null,
+      search: null
+    };
+  },
+  watch: {
+    model: function model(val) {
+      window.location.href = '/search/' + val;
+    },
+    search: function search(val) {
+      var _this = this;
+
+      if (this.items.length > 0) return;
+      this.isLoading = true;
+      fetch('/categories').then(function (res) {
+        return res.clone().json();
+      }).then(function (res) {
+        _this.items = res;
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        return _this.isLoading = false;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -5974,7 +6015,12 @@ var render = function render() {
   }, _vm._l(_vm.categories, function (category, index) {
     return _c("div", {
       key: index,
-      staticClass: "custom_card_categories"
+      staticClass: "custom_card_categories",
+      on: {
+        click: function click($event) {
+          return _vm.redirect(category.slug);
+        }
+      }
     }, [_c("span", {
       staticClass: "text_card_category"
     }, [_vm._v(_vm._s(category.name))])]);
@@ -6029,23 +6075,37 @@ var render = function render() {
       staticStyle: {
         "margin-top": "15px"
       }
-    }), _vm._v(" "), _c("v-card-text", {
+    }), _vm._v(" "), project.current_team == project.total_team ? _c("v-card-text", {
       staticClass: "text--primary"
-    }, [_c("strong", [_vm._v("Sitios disponibles: " + _vm._s(project.current_team) + "/" + _vm._s(project.total_team))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Finaliza el: " + _vm._s(project.expiration_date))])]), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
+    }, [_c("strong", [_vm._v("Equipo completo")])]) : _c("v-card-text", {
+      staticClass: "text--primary"
+    }, [_c("strong", [_vm._v("Sitios disponibles: " + _vm._s(project.current_team) + "/" + _vm._s(project.total_team))])]), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
       attrs: {
         color: "#5e9ba0",
         text: "",
-        href: _vm.urlProject + project.id
+        href: "/projects/" + project.id
       }
     }, [_vm._v("\n                            Unirse al proyecto\n                        ")])], 1)], 1);
-  }), 1), _vm._v(" "), _c("div", {
+  }), 1), _vm._v(" "), _vm.pagination == 1 ? _c("v-pagination", {
+    attrs: {
+      length: Math.ceil(_vm.projects.length / _vm.perPage),
+      color: "rgb(94, 155, 160)"
+    },
+    model: {
+      value: _vm.page,
+      callback: function callback($$v) {
+        _vm.page = $$v;
+      },
+      expression: "page"
+    }
+  }) : _vm._e(), _vm._v(" "), _vm.pagination == 0 ? _c("div", {
     staticClass: "custom_container_btn"
   }, [_c("v-btn", {
     staticClass: "ma-2 black--text",
     attrs: {
       color: "#F9BE01"
     }
-  }, [_vm._v("\n            Ver todos los proyectos\n        ")])], 1)]);
+  }, [_vm._v("\n            Ver todos los proyectos\n        ")])], 1) : _vm._e()], 1);
 };
 
 var staticRenderFns = [];
@@ -6084,7 +6144,7 @@ var render = function render() {
       "hide-details": "",
       "hide-selected": "",
       "item-text": "name",
-      "item-value": "symbol",
+      "item-value": "slug",
       label: "Busco un proyecto que trabaje con ...",
       solo: ""
     },
@@ -6103,46 +6163,14 @@ var render = function render() {
       },
       proxy: true
     }, {
-      key: "selection",
+      key: "item",
       fn: function fn(_ref) {
-        var attr = _ref.attr,
-            on = _ref.on,
-            item = _ref.item,
-            selected = _ref.selected;
-        return [_c("v-chip", _vm._g(_vm._b({
-          staticClass: "white--text",
-          attrs: {
-            "input-value": selected,
-            color: "blue-grey"
-          }
-        }, "v-chip", attr, false), on), [_c("v-icon", {
-          attrs: {
-            left: ""
-          }
-        }, [_vm._v("\n            mdi-bitcoin\n        ")]), _vm._v(" "), _c("span", {
+        var item = _ref.item;
+        return [_c("v-list-item-content", [_c("v-list-item-title", {
           domProps: {
             textContent: _vm._s(item.name)
           }
         })], 1)];
-      }
-    }, {
-      key: "item",
-      fn: function fn(_ref2) {
-        var item = _ref2.item;
-        return [_c("v-list-item-avatar", {
-          staticClass: "text-h5 font-weight-light white--text",
-          attrs: {
-            color: "indigo"
-          }
-        }, [_vm._v("\n        " + _vm._s(item.name.charAt(0)) + "\n        ")]), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
-          domProps: {
-            textContent: _vm._s(item.name)
-          }
-        }), _vm._v(" "), _c("v-list-item-subtitle", {
-          domProps: {
-            textContent: _vm._s(item.symbol)
-          }
-        })], 1), _vm._v(" "), _c("v-list-item-action", [_c("v-icon", [_vm._v("mdi-bitcoin")])], 1)];
       }
     }]),
     model: {
