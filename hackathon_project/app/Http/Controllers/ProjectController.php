@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
+use App\Mail\Welcome;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -59,11 +61,16 @@ class ProjectController extends Controller
             $user = Auth::user();
 
             if(!$user){
+
+                $password = rand(100000, 999999);
+
                 $user = User::create([
                     'name' => $request['name'],
                     'email' => $request['email'],
-                    'password' => Hash::make(rand(100000, 999999))
+                    'password' => Hash::make($password)
                 ]);
+
+                Mail::to($request['email'])->send(new Welcome($user->name, $user->email, $password));
             }
 
             $new_project = Project::create([
@@ -178,15 +185,20 @@ class ProjectController extends Controller
             $user = Auth::user();
 
             if(!$user){
+
+                $password = rand(100000, 999999);
+
                 $user = User::create([
                     'name' => $request['name'],
                     'email' => $request['email'],
-                    'password' => Hash::make(rand(100000, 999999))
+                    'password' => Hash::make($password)
                 ]);
 
-                $project = Project::find($request['project_id']);
-                $project->users()->attach($user->id);
+                Mail::to($request['email'])->send(new Welcome($user->name, $user->email, $password));
             }
+
+            $project = Project::find($request['project_id']);
+            $project->users()->attach($user->id);
 
         }catch(Exception $e){
             return view('projects.join', ['message' => __('views.error_join_project'), 'status' => 'error', 'project_id' => $request['project_id']]);

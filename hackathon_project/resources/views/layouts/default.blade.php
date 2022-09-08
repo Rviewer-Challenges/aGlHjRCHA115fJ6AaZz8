@@ -9,6 +9,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" >
         <link href="{{ asset('css/show_project.css') }}" rel="stylesheet" type="text/css" >
+        <link rel="icon" href="{{url('/images/logo_uniontask.png')}}">
         <title>UNION TASK</title>
     </head>
     <body>
