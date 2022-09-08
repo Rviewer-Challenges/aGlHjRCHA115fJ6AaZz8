@@ -131,4 +131,20 @@ class ProjectController extends Controller
     {
         //
     }
+
+    /**
+     * Dispaly the view of all projects
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all(){
+
+        return view('projects.all');
+    }
+
+    public function all_api(){
+
+        $projects = Project::all();
+        return $projects;
+    }
 }

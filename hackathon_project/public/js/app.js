@@ -5530,10 +5530,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return axios.get(_this.api).then(function (response) {
                   _this.projects = response.data;
-
-                  if (_this.pagination == 1) {
-                    _this.projects = _this.projects_visible;
-                  }
                 })["catch"](function (error) {
                   console.log(error.toJSON());
                 });
@@ -6051,9 +6047,9 @@ var render = function render() {
 
   return _c("div", [_vm.projects.length <= 0 ? _c("div", {
     staticClass: "message_not_projects"
-  }, [_c("strong", [_vm._v("Actualmente no hay proyectos que podamos mostrarte. ¡Animate y se el primero!")])]) : _c("div", {
+  }, [_c("strong", [_vm._v("Actualmente no hay proyectos que podamos mostrarte. ¡Animate y se el primero!")])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "container_list_projects"
-  }, _vm._l(_vm.projects, function (project, index) {
+  }, [_vm.pagination == 0 ? _vm._l(_vm.projects, function (project, index) {
     return _c("v-card", {
       key: index,
       staticClass: "mx-auto custom_card",
@@ -6086,7 +6082,40 @@ var render = function render() {
         href: "/projects/" + project.id
       }
     }, [_vm._v("\n                            Unirse al proyecto\n                        ")])], 1)], 1);
-  }), 1), _vm._v(" "), _vm.pagination == 1 ? _c("v-pagination", {
+  }) : _vm.pagination == 1 ? _vm._l(_vm.projects_visible, function (project, index) {
+    return _c("v-card", {
+      key: index,
+      staticClass: "mx-auto custom_card",
+      attrs: {
+        "max-width": "300"
+      }
+    }, [_c("v-img", {
+      staticClass: "white--text align-end",
+      attrs: {
+        height: "150px",
+        src: "/images/project_card_img.jpg"
+      }
+    }, [_c("v-card-title", [_vm._v(_vm._s(project.title))])], 1), _vm._v(" "), _c("v-card-subtitle", {
+      staticClass: "pb-0",
+      staticStyle: {
+        height: "82px"
+      }
+    }, [_vm._v("\n                    " + _vm._s(project.short_description) + "\n                ")]), _vm._v(" "), _c("v-divider", {
+      staticStyle: {
+        "margin-top": "15px"
+      }
+    }), _vm._v(" "), project.current_team == project.total_team ? _c("v-card-text", {
+      staticClass: "text--primary"
+    }, [_c("strong", [_vm._v("Equipo completo")])]) : _c("v-card-text", {
+      staticClass: "text--primary"
+    }, [_c("strong", [_vm._v("Sitios disponibles: " + _vm._s(project.current_team) + "/" + _vm._s(project.total_team))])]), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
+      attrs: {
+        color: "#5e9ba0",
+        text: "",
+        href: "/projects/" + project.id
+      }
+    }, [_vm._v("\n                            Unirse al proyecto\n                        ")])], 1)], 1);
+  }) : _vm._e()], 2), _vm._v(" "), _vm.pagination == 1 ? _c("v-pagination", {
     attrs: {
       length: Math.ceil(_vm.projects.length / _vm.perPage),
       color: "rgb(94, 155, 160)"
@@ -6103,9 +6132,10 @@ var render = function render() {
   }, [_c("v-btn", {
     staticClass: "ma-2 black--text",
     attrs: {
-      color: "#F9BE01"
+      color: "#F9BE01",
+      href: "/all/projects"
     }
-  }, [_vm._v("\n            Ver todos los proyectos\n        ")])], 1) : _vm._e()], 1);
+  }, [_vm._v("\n                Ver todos los proyectos\n        ")])], 1) : _vm._e()], 1);
 };
 
 var staticRenderFns = [];

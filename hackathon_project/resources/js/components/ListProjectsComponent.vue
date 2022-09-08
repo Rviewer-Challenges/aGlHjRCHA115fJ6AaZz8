@@ -32,8 +32,9 @@
             <strong>Actualmente no hay proyectos que podamos mostrarte. ¡Animate y se el primero!</strong>
         </div>
 
-        <div v-else class="container_list_projects">
-            <v-card class="mx-auto custom_card" max-width="300" v-for="(project, index) in projects" :key="index">
+        <div class="container_list_projects">
+            <template v-if="pagination == 0">
+                <v-card class="mx-auto custom_card" max-width="300" v-for="(project, index) in projects" :key="index">
                     <v-img
                     class="white--text align-end"
                     height="150px"
@@ -68,6 +69,45 @@
                             </v-btn>
                     </v-card-actions>
                 </v-card>
+            </template>
+
+            <template v-else-if="pagination == 1">
+                <v-card class="mx-auto custom_card" max-width="300" v-for="(project, index) in projects_visible" :key="index">
+                    <v-img
+                    class="white--text align-end"
+                    height="150px"
+                    :src="'/images/project_card_img.jpg'"
+                    >
+
+                    <v-card-title>{{project.title}}</v-card-title>
+
+                    </v-img>
+
+                    <v-card-subtitle class="pb-0" style="height: 82px;">
+                        {{project.short_description}}
+                    </v-card-subtitle>
+
+                    <v-divider style="margin-top: 15px;"></v-divider>
+
+                    <v-card-text class="text--primary" v-if="project.current_team == project.total_team">
+                        <strong>Equipo completo</strong>
+                    </v-card-text>
+
+                    <v-card-text class="text--primary" v-else="project.current_team == project.total_team">
+                        <strong>Sitios disponibles: {{project.current_team}}/{{project.total_team}}</strong>
+                    </v-card-text>
+
+                    <v-card-actions>
+                        <v-btn
+                                color="#5e9ba0"
+                                text
+                                :href="'/projects/' + project.id"
+                            >
+                                Unirse al proyecto
+                            </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </template>
         </div>
 
         <v-pagination
@@ -79,10 +119,11 @@
 
         <div class="custom_container_btn" v-if="pagination == 0">
             <v-btn
-            class="ma-2 black--text"
-            color="#F9BE01"
-            >
-                Ver todos los proyectos
+                class="ma-2 black--text"
+                color="#F9BE01"
+                :href="'/all/projects'"
+                >
+                    Ver todos los proyectos
             </v-btn>
         </div>
 
@@ -112,10 +153,6 @@
                 await axios.get(this.api)
                 .then(response => {
                     this.projects = response.data;
-
-                    if(this.pagination == 1){
-                        this.projects = this.projects_visible;
-                    }
                 })
                 .catch(function (error) {
                     console.log(error.toJSON());

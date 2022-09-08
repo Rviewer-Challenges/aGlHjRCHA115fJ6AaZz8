@@ -11,4 +11,6 @@ return [
     'user_created' => 'El correo electrónico ya esta registrado. Por favor inicia sesión.',
     'title_search' => '¿Quieres mejorar tus habilidades con :category?',
     'subtitle_search' => 'Te mostramos todos los proyectos que trabajan con :category. Unete, y desarrolla junto a un equipo el proyecto que se adecué a tí',
+    'title_all_projects' => 'Colabora en algún proyecto',
+    'subtitle_all_projects' => 'Echa un vistazo a los proyectos que ha creado la comunidad, y ¡animate!',
 ];
