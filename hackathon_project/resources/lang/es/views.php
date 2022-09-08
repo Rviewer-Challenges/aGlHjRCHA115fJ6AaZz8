@@ -13,4 +13,8 @@ return [
     'subtitle_search' => 'Te mostramos todos los proyectos que trabajan con :category. Unete, y desarrolla junto a un equipo el proyecto que se adecué a tí',
     'title_all_projects' => 'Colabora en algún proyecto',
     'subtitle_all_projects' => 'Echa un vistazo a los proyectos que ha creado la comunidad, y ¡animate!',
+    'title_join' => '¿Has decidido unirte? ¡Genial!',
+    'subtitle_join' => 'A partir de aquí, solo depende de tí para aprender lo máximo',
+    'error_join_project' => 'Ha ocurrido un error al unirte al proyecto. Por favor, vuelva a intentarlo más tarde.',
+    'success_join_project' => 'La solicitud se ha enviado correctamente. Revise su correo electrónico.',
 ];

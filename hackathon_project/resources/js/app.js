@@ -10,6 +10,7 @@ Vue.component('list-projects-component', require('./components/ListProjectsCompo
 Vue.component('list-categories-component', require('./components/ListCategoriesComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 Vue.component('create-project-component', require('./components/CreateProjectFormComponent.vue').default);
+Vue.component('join-project-component', require('./components/JoinProjectFormComponent.vue').default);
 
 const app = new Vue({
     el: '#app',

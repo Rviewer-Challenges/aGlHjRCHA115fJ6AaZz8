@@ -13,9 +13,11 @@
                 <div class="text_team">Sitios disponibles {{$project->current_team}} / {{$project->total_team}}</div>
             </div>
 
-            <div class="container_right">
-                <button class="btn_join">UNIRME AL EQUIPO</button>
-            </div>
+            <a class="container_right" href="{{ route('join_project', $project->id) }}">
+                <button class="btn_join">
+                    UNIRME AL EQUIPO
+                </button>
+            </a>
         </div>
 
         <h3 class="description_title">Descripción</h3>

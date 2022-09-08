@@ -46,6 +46,7 @@
     justify-content: center;
     align-items: center;
     width: 50%;
+    text-decoration: none;
 }
 
 .btn_join {
