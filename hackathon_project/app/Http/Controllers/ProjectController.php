@@ -147,4 +147,51 @@ class ProjectController extends Controller
         $projects = Project::all();
         return $projects;
     }
+
+    /**
+     * Dispaly the view of join projects
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function join($id){
+
+        return view('projects.join', ['project_id' => $id]);
+    }
+
+    /**
+     * Send the data to the project manager
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function join_post(Request $request){
+
+        if($request['email']){
+            $user_exists = User::where('email', $request['email'])->first();
+
+            if($user_exists) {
+                return view('projects.join', ['message' => __('views.user_created'), 'status' => 'error', 'project_id' => $request['project_id']]);
+            }
+        }
+
+        try{
+
+            $user = Auth::user();
+
+            if(!$user){
+                $user = User::create([
+                    'name' => $request['name'],
+                    'email' => $request['email'],
+                    'password' => Hash::make(rand(100000, 999999))
+                ]);
+
+                $project = Project::find($request['project_id']);
+                $project->users()->attach($user->id);
+            }
+
+        }catch(Exception $e){
+            return view('projects.join', ['message' => __('views.error_join_project'), 'status' => 'error', 'project_id' => $request['project_id']]);
+        }
+
+        return view('projects.join', ['message' => __('views.success_join_project'), 'status' => 'success', 'project_id' => $request['project_id']]);
+    }
 }

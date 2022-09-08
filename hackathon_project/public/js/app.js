@@ -5426,6 +5426,80 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['message', 'status', 'auth', 'projectId'],
+  data: function data() {
+    return {
+      valid: true,
+      name: '',
+      email: '',
+      why: '',
+      share: '',
+      experience: '',
+      hidden: false,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      dialog: false,
+      nameRules: [function (v) {
+        return !!v || 'Tu nombre es obligatorio';
+      }, function (v) {
+        return v.length <= 50 || 'Tu nombre debe tener máximo 50 caracteres';
+      }],
+      whyRules: [function (v) {
+        return !!v || '¿Por qué quieres unirte? es obligatorio';
+      }, function (v) {
+        return v.length <= 500 || '¿Por qué quieres unirte? debe tener máximo 500 caracteres';
+      }],
+      emailRules: [function (v) {
+        return !!v || 'Correo electrónico es obligatorio';
+      }, function (v) {
+        return /.+@.+/.test(v) || 'Correo electrónico debe de ser válido';
+      }],
+      shareRules: [function (v) {
+        return !!v || '¿Qué aportarás al proyecto? es obligatorio';
+      }, function (v) {
+        return v.length <= 500 || '¿Qué aportarás al proyecto? debe tener máximo 500 caracteres';
+      }],
+      experienceRules: [function (v) {
+        return !!v || '¿Tienes experiencia con las tecnologías que se solicitan, o similares? es obligatorio';
+      }, function (v) {
+        return v.length <= 500 || '¿Tienes experiencia con las tecnologías que se solicitan, o similares? debe tener máximo 500 caracteres';
+      }]
+    };
+  },
+  created: function created() {
+    if (this.auth) {
+      this.hidden = true;
+    } else {
+      this.hidden = false;
+    }
+  },
+  methods: {
+    validate: function validate() {
+      var is_valid = this.$refs.form.validate();
+
+      if (is_valid) {
+        this.dialog = true;
+      }
+    },
+    join: function join() {
+      this.$refs.form.$el.submit();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListCategoriesComponent.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListCategoriesComponent.vue?vue&type=script&lang=js& ***!
@@ -5990,6 +6064,282 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=template&id=31ac74b5&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=template&id=31ac74b5& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("v-form", {
+    ref: "form",
+    attrs: {
+      "lazy-validation": "",
+      method: "POST",
+      action: "/api/join"
+    },
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.validate.apply(null, arguments);
+      }
+    },
+    model: {
+      value: _vm.valid,
+      callback: function callback($$v) {
+        _vm.valid = $$v;
+      },
+      expression: "valid"
+    }
+  }, [_c("input", {
+    attrs: {
+      type: "hidden",
+      name: "_token"
+    },
+    domProps: {
+      value: _vm.csrf
+    }
+  }), _vm._v(" "), _c("input", {
+    attrs: {
+      type: "hidden",
+      name: "project_id"
+    },
+    domProps: {
+      value: _vm.projectId
+    }
+  }), _vm._v(" "), _c("v-container", {
+    staticClass: "mt-10"
+  }, [_c("v-row", [_c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_vm.status == "error" ? _c("v-alert", {
+    attrs: {
+      shaped: "",
+      prominent: "",
+      type: "error",
+      dismissible: "",
+      color: "error",
+      border: "left",
+      elevation: "2",
+      "colored-border": ""
+    }
+  }, [_vm._v("\n                " + _vm._s(_vm.message) + "\n            ")]) : _vm.status == "success" ? _c("v-alert", {
+    attrs: {
+      shaped: "",
+      prominent: "",
+      dismissible: "",
+      color: "success",
+      border: "left",
+      elevation: "2",
+      "colored-border": ""
+    }
+  }, [_vm._v("\n                " + _vm._s(_vm.message) + "\n            ")]) : _vm._e()], 1), _vm._v(" "), !_vm.hidden ? _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("h3", {
+    staticClass: "title_section"
+  }, [_vm._v("Datos personales")])]) : _vm._e(), _vm._v(" "), !_vm.hidden ? _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "6"
+    }
+  }, [_c("v-text-field", {
+    attrs: {
+      name: "name",
+      rules: _vm.nameRules,
+      counter: 50,
+      label: "Tu nombre",
+      solo: "",
+      hint: "Tu nombre",
+      required: ""
+    },
+    model: {
+      value: _vm.name,
+      callback: function callback($$v) {
+        _vm.name = $$v;
+      },
+      expression: "name"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), !_vm.hidden ? _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "6"
+    }
+  }, [_c("v-text-field", {
+    attrs: {
+      name: "email",
+      rules: _vm.emailRules,
+      label: "Correo electrónico (Se usara para iniciar sesión)",
+      solo: "",
+      hint: "Correo electrónico (Se usara para iniciar sesión)",
+      required: ""
+    },
+    model: {
+      value: _vm.email,
+      callback: function callback($$v) {
+        _vm.email = $$v;
+      },
+      expression: "email"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("h3", {
+    staticClass: "title_section"
+  }, [_vm._v("¡Cuéntale al jefe de proyecto!")])]), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-textarea", {
+    attrs: {
+      name: "why",
+      rules: _vm.whyRules,
+      counter: 500,
+      label: "¿Por qué quieres unirte al proyecto?",
+      required: "",
+      solo: "",
+      hint: "¿Por qué quieres unirte al proyecto?"
+    },
+    model: {
+      value: _vm.why,
+      callback: function callback($$v) {
+        _vm.why = $$v;
+      },
+      expression: "why"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-textarea", {
+    attrs: {
+      name: "share",
+      rules: _vm.shareRules,
+      counter: 500,
+      label: "¿Qué aportarás al proyecto? (¡Con solo aportar ganas de trabajar es suficiente!)",
+      solo: "",
+      hint: "¿Qué aportarás al proyecto? (¡Con solo aportar ganas de trabajar es suficiente!)",
+      required: ""
+    },
+    model: {
+      value: _vm.share,
+      callback: function callback($$v) {
+        _vm.share = $$v;
+      },
+      expression: "share"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-textarea", {
+    attrs: {
+      name: "experience",
+      rules: _vm.experienceRules,
+      counter: 500,
+      label: "¿Tienes experiencia con las tecnologías que se solicitan, o similares? ¡Cuéntanos!",
+      solo: "",
+      hint: "¿Tienes experiencia con las tecnologías que se solicitan, o similares? ¡Cuéntanos!",
+      required: ""
+    },
+    model: {
+      value: _vm.experience,
+      callback: function callback($$v) {
+        _vm.experience = $$v;
+      },
+      expression: "experience"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-btn", {
+    staticClass: "mr-4 white--text",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      color: "rgb(94, 155, 160)"
+    },
+    on: {
+      click: _vm.validate
+    }
+  }, [_vm._v("\n            SOLICITAR UNIRME\n            ")])], 1)], 1)], 1), _vm._v(" "), _c("v-dialog", {
+    attrs: {
+      transition: "dialog-top-transition",
+      "max-width": "600",
+      persistent: ""
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn(dialog) {
+        return [_c("v-card", [_c("v-toolbar", {
+          attrs: {
+            color: "rgb(94, 155, 160)",
+            dark: ""
+          }
+        }, [_vm._v("¡Antes de inscribirte!")]), _vm._v(" "), _c("v-card-text", [!_vm.hidden ? _c("div", {
+          staticClass: "text-h7 pa-9"
+        }, [_c("strong", [_vm._v("Se te creará una cuenta con el correo electrónico dado.")]), _vm._v(" Recibirás un correo con los datos de acceso para poder iniciar sesión. "), _c("br"), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Si aceptas unirte")]), _vm._v(", se le enviará un correo al administrador del proyecto para validar tu incorporación. Él se pondrá en contacto contigo.")]) : _vm._e(), _vm._v(" "), _vm.hidden ? _c("div", {
+          staticClass: "text-h7 pa-9"
+        }, [_c("strong", [_vm._v("Si aceptas unirte")]), _vm._v(", se le enviará un correo al administrador del proyecto para validar tu incorporación. Él se pondrá en contacto contigo.")]) : _vm._e()]), _vm._v(" "), _c("v-card-actions", {
+          staticClass: "justify-end"
+        }, [_c("v-btn", {
+          attrs: {
+            text: "",
+            color: "rgb(94, 155, 160)"
+          },
+          on: {
+            click: _vm.join
+          }
+        }, [_vm._v("Unirme")]), _vm._v(" "), _c("v-btn", {
+          attrs: {
+            text: "",
+            color: "red"
+          },
+          on: {
+            click: function click($event) {
+              dialog.value = false;
+            }
+          }
+        }, [_vm._v("Cancelar")])], 1)], 1)];
+      }
+    }]),
+    model: {
+      value: _vm.dialog,
+      callback: function callback($$v) {
+        _vm.dialog = $$v;
+      },
+      expression: "dialog"
+    }
+  })], 1);
+};
+
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListCategoriesComponent.vue?vue&type=template&id=6d975ab0&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListCategoriesComponent.vue?vue&type=template&id=6d975ab0& ***!
@@ -6238,6 +6588,7 @@ Vue.component('list-projects-component', (__webpack_require__(/*! ./components/L
 Vue.component('list-categories-component', (__webpack_require__(/*! ./components/ListCategoriesComponent.vue */ "./resources/js/components/ListCategoriesComponent.vue")["default"]));
 Vue.component('footer-component', (__webpack_require__(/*! ./components/FooterComponent.vue */ "./resources/js/components/FooterComponent.vue")["default"]));
 Vue.component('create-project-component', (__webpack_require__(/*! ./components/CreateProjectFormComponent.vue */ "./resources/js/components/CreateProjectFormComponent.vue")["default"]));
+Vue.component('join-project-component', (__webpack_require__(/*! ./components/JoinProjectFormComponent.vue */ "./resources/js/components/JoinProjectFormComponent.vue")["default"]));
 var app = new Vue({
   el: '#app',
   vuetify: _vuetify__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -11589,6 +11940,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.btn-custom {\n    background-color: #F9BE01;\n    border: 1px solid #F9BE01;\n    border-radius: 8px;\n    box-sizing: border-box;\n    color: #191C1E;\n    cursor: pointer;\n    display: inline-block;\n    font-family: Rubik, Verdana, Arial, sans-serif;\n    font-size: 16px;\n    font-weight: 400;\n    height: 40px;\n    line-height: normal;\n    margin: 0 0 0 8px;\n    min-width: 40px;\n    outline: 0;\n    overflow: visible;\n    padding: 0 16px;\n    position: relative;\n    text-align: center;\n    text-decoration: none;\n    text-transform: none;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    white-space: nowrap;\n}\n.btn-login {\n    background-color: #F4F5F6;\n    border: 1px solid #F4F5F6;\n    border-radius: 8px;\n    box-sizing: border-box;\n    color: #191C1E;\n    cursor: pointer;\n    display: inline-block;\n    font-family: Rubik, Verdana, Arial, sans-serif;\n    font-size: 16px;\n    font-weight: 400;\n    height: 40px;\n    line-height: normal;\n    margin: 0 0 0 8px;\n    min-width: 40px;\n    outline: 0;\n    overflow: visible;\n    padding: 0 16px;\n    position: relative;\n    text-align: center;\n    text-decoration: none;\n    text-transform: none;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n    white-space: nowrap;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.title_section {\nfont-size: 30px;\nfont-weight: 600;\ncolor: rgb(94, 155, 160);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29222,6 +29597,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_style_index_0_id_31ac74b5_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_style_index_0_id_31ac74b5_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_style_index_0_id_31ac74b5_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListCategoriesComponent.vue?vue&type=style&index=0&id=6d975ab0&lang=css&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListCategoriesComponent.vue?vue&type=style&index=0&id=6d975ab0&lang=css& ***!
@@ -29710,6 +30115,47 @@ component.options.__file = "resources/js/components/HeaderComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/JoinProjectFormComponent.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/JoinProjectFormComponent.vue ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _JoinProjectFormComponent_vue_vue_type_template_id_31ac74b5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JoinProjectFormComponent.vue?vue&type=template&id=31ac74b5& */ "./resources/js/components/JoinProjectFormComponent.vue?vue&type=template&id=31ac74b5&");
+/* harmony import */ var _JoinProjectFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JoinProjectFormComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/JoinProjectFormComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _JoinProjectFormComponent_vue_vue_type_style_index_0_id_31ac74b5_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css& */ "./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _JoinProjectFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _JoinProjectFormComponent_vue_vue_type_template_id_31ac74b5___WEBPACK_IMPORTED_MODULE_0__.render,
+  _JoinProjectFormComponent_vue_vue_type_template_id_31ac74b5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/JoinProjectFormComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ListCategoriesComponent.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/ListCategoriesComponent.vue ***!
@@ -29881,6 +30327,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/JoinProjectFormComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/JoinProjectFormComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./JoinProjectFormComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/ListCategoriesComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/components/ListCategoriesComponent.vue?vue&type=script&lang=js& ***!
@@ -29980,6 +30442,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/JoinProjectFormComponent.vue?vue&type=template&id=31ac74b5&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/JoinProjectFormComponent.vue?vue&type=template&id=31ac74b5& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_template_id_31ac74b5___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_template_id_31ac74b5___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_template_id_31ac74b5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./JoinProjectFormComponent.vue?vue&type=template&id=31ac74b5& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=template&id=31ac74b5&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ListCategoriesComponent.vue?vue&type=template&id=6d975ab0&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/ListCategoriesComponent.vue?vue&type=template&id=6d975ab0& ***!
@@ -30040,6 +30519,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderComponent_vue_vue_type_style_index_0_id_153bfd55_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HeaderComponent.vue?vue&type=style&index=0&id=153bfd55&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HeaderComponent.vue?vue&type=style&index=0&id=153bfd55&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css& ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JoinProjectFormComponent_vue_vue_type_style_index_0_id_31ac74b5_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/JoinProjectFormComponent.vue?vue&type=style&index=0&id=31ac74b5&lang=css&");
 
 
 /***/ }),

@@ -28,4 +28,7 @@ Route::get('/search/api/{category}', [SearchController::class, 'search']);
 Route::get('/all/projects', [ProjectController::class, 'all']);
 Route::get('/all/api/projects', [ProjectController::class, 'all_api']);
 
+Route::get('/join/projects/{id}', [ProjectController::class, 'join'])->name('join_project');
+Route::post('/api/join', [ProjectController::class, 'join_post']);
+
 Auth::routes();
