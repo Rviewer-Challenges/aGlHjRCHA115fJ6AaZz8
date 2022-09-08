@@ -5314,7 +5314,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['message', 'status', 'auth'],
+  props: ['message', 'status', 'auth', 'categories'],
   data: function data() {
     return {
       valid: true,
@@ -5326,6 +5326,7 @@ __webpack_require__.r(__webpack_exports__);
       description: '',
       motivation: '',
       requirements: '',
+      category: '',
       hidden: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       titleRules: [function (v) {
@@ -5367,6 +5368,9 @@ __webpack_require__.r(__webpack_exports__);
         return !!v || 'Requisitos del proyecto es obligatorio';
       }, function (v) {
         return v.length <= 1200 || 'Requisitos del proyecto debe tener máximo 1200 caracteres';
+      }],
+      categoryRules: [function (v) {
+        return !!v || 'Categoría es obligatorio';
       }]
     };
   },
@@ -5376,8 +5380,6 @@ __webpack_require__.r(__webpack_exports__);
     } else {
       this.hidden = false;
     }
-
-    console.log(this.hidden);
   },
   methods: {
     validate: function validate() {
@@ -5716,6 +5718,29 @@ var render = function render() {
         _vm.total_team = $$v;
       },
       expression: "total_team"
+    }
+  })], 1), _vm._v(" "), _c("v-col", {
+    attrs: {
+      cols: "12",
+      md: "12"
+    }
+  }, [_c("v-select", {
+    attrs: {
+      name: "category",
+      rules: _vm.categoryRules,
+      items: JSON.parse(_vm.categories),
+      "item-text": "name",
+      "item-value": "id",
+      label: "Categorías",
+      multiple: "",
+      solo: ""
+    },
+    model: {
+      value: _vm.category,
+      callback: function callback($$v) {
+        _vm.category = $$v;
+      },
+      expression: "category"
     }
   })], 1), _vm._v(" "), _c("v-col", {
     attrs: {

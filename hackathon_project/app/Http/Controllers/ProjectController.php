@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
+use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
 use Exception;
@@ -31,7 +32,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $categories = Category::all()->toArray();
+        return view('projects.create', ['categories' => $categories]);
     }
 
     /**
@@ -42,12 +44,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $categories_original = Category::all()->toArray();
 
         if($request['email']){
             $user_exists = User::where('email', $request['email'])->first();
 
             if($user_exists) {
-                return view('projects.create', ['message' => __('views.user_created',), 'status' => 'error']);
+                return view('projects.create', ['message' => __('views.user_created',), 'status' => 'error', 'categories' => $categories_original]);
             }
         }
 
@@ -74,11 +77,14 @@ class ProjectController extends Controller
                 'active' => 1,
             ]);
 
+            $categories = explode(",", $request['category']);
+            $new_project->categories()->attach($categories);
+
         }catch(Exception $e){
-            return view('projects.create', ['message' => __('views.error_create_project',), 'status' => 'error']);
+            return view('projects.create', ['message' => __('views.error_create_project',), 'status' => 'error', 'categories' => $categories_original]);
         }
 
-        return view('projects.create', ['message' => __('views.success_create_project',), 'status' => 'success']);
+        return view('projects.create', ['message' => __('views.success_create_project',), 'status' => 'success', 'categories' => $categories_original]);
     }
 
     /**

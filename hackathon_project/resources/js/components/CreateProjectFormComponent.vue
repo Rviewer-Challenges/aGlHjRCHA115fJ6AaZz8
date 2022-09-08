@@ -108,6 +108,23 @@
                 cols="12"
                 md="12"
             >
+                <v-select
+                name="category"
+                v-model="category"
+                :rules="categoryRules"
+                :items="JSON.parse(categories)"
+                item-text="name"
+                item-value="id"
+                label="Categorías"
+                multiple
+                solo
+                ></v-select>
+            </v-col>
+
+            <v-col
+                cols="12"
+                md="12"
+            >
                 <v-textarea
                     name="short_description"
                     v-model="short_description"
@@ -188,7 +205,7 @@
 
 <script>
     export default {
-        props: ['message', 'status', 'auth'],
+        props: ['message', 'status', 'auth', 'categories'],
 
         data: () => ({
             valid: true,
@@ -200,6 +217,7 @@
             description: '',
             motivation: '',
             requirements: '',
+            category: '',
             hidden: false,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
@@ -235,6 +253,9 @@
             v => !!v || 'Requisitos del proyecto es obligatorio',
             v => v.length <= 1200 || 'Requisitos del proyecto debe tener máximo 1200 caracteres',
             ],
+            categoryRules: [
+            v => !!v || 'Categoría es obligatorio'
+            ],
         }),
 
         created() {
@@ -244,8 +265,6 @@
             }else{
                 this.hidden = false;
             }
-
-            console.log(this.hidden);
         },
 
         methods: {
