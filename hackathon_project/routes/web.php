@@ -25,4 +25,7 @@ Route::resource('/categories', CategoryController::class);
 Route::get('/search/{category}', [SearchController::class, 'index']);
 Route::get('/search/api/{category}', [SearchController::class, 'search']);
 
+Route::get('/all/projects', [ProjectController::class, 'all']);
+Route::get('/all/api/projects', [ProjectController::class, 'all_api']);
+
 Auth::routes();
