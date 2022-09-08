@@ -50,17 +50,19 @@
 
                     <v-divider style="margin-top: 15px;"></v-divider>
 
-                    <v-card-text class="text--primary">
+                    <v-card-text class="text--primary" v-if="project.current_team == project.total_team">
+                        <strong>Equipo completo</strong>
+                    </v-card-text>
+
+                    <v-card-text class="text--primary" v-else="project.current_team == project.total_team">
                         <strong>Sitios disponibles: {{project.current_team}}/{{project.total_team}}</strong>
-                        <br>
-                        <strong>Finaliza el: {{project.expiration_date}}</strong>
                     </v-card-text>
 
                     <v-card-actions>
                         <v-btn
                                 color="#5e9ba0"
                                 text
-                                :href="urlProject + project.id"
+                                :href="'/projects/' + project.id"
                             >
                                 Unirse al proyecto
                             </v-btn>
@@ -68,7 +70,14 @@
                 </v-card>
         </div>
 
-        <div class="custom_container_btn">
+        <v-pagination
+                v-if="pagination == 1"
+                v-model="page"
+                :length="Math.ceil(projects.length/perPage)"
+                color="rgb(94, 155, 160)"
+        ></v-pagination>
+
+        <div class="custom_container_btn" v-if="pagination == 0">
             <v-btn
             class="ma-2 black--text"
             color="#F9BE01"
@@ -83,28 +92,41 @@
 
 <script>
     export default {
-        props: ['baseUrl'],
+        props: ['api', 'pagination'],
 
         data (){
             return {
                 projects: [],
-                urlProject: null,
+                page: 1,
+                perPage: 12,
             }
         },
 
         created() {
-            this.urlProject = this.baseUrl + '/projects/';
             this.getProjects();
         },
 
         methods: {
-            async getProjects() {
-                await axios.get(this.urlProject)
-                .then(response => this.projects = response.data)
+
+            async getProjects(pagination) {
+                await axios.get(this.api)
+                .then(response => {
+                    this.projects = response.data;
+
+                    if(this.pagination == 1){
+                        this.projects = this.projects_visible;
+                    }
+                })
                 .catch(function (error) {
                     console.log(error.toJSON());
                 });
             },
-        }
+        },
+
+        computed: {
+            projects_visible () {
+                return this.projects.slice((this.page - 1)* this.perPage, this.page* this.perPage)
+            }
+  }
     }
 </script>

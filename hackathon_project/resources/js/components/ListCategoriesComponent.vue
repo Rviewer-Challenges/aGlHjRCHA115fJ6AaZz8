@@ -41,7 +41,7 @@
 
 <template>
         <div class="container_categories">
-            <div class="custom_card_categories" v-for="(category, index) in categories" :key="index">
+            <div class="custom_card_categories" v-for="(category, index) in categories" :key="index" @click="redirect(category.slug)">
                 <span class="text_card_category">{{category.name}}</span>
             </div>
         </div>
@@ -69,6 +69,10 @@
                     console.log(error.toJSON());
                 });
             },
+
+            redirect(slug){
+                window.location='search/' + slug;
+            }
         }
     }
 </script>
