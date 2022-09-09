@@ -5421,7 +5421,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['auth']
+  props: ['auth', 'userId']
 });
 
 /***/ }),
@@ -6051,7 +6051,7 @@ var render = function render() {
     staticClass: "btn-custom"
   }, [_vm._v("\n            Crear proyecto\n        ")])]), _vm._v(" "), _vm.auth ? _c("a", {
     attrs: {
-      href: "/"
+      href: "/account/" + _vm.userId
     }
   }, [_c("button", {
     staticClass: "btn-login"

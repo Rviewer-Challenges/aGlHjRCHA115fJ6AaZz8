@@ -8,17 +8,17 @@
 
         <hr width="70%" color="#F9BE01">
 
-        <div class="container_team">
-            <div class="container_left">
-                <div class="text_team">Sitios disponibles {{$project->current_team}} / {{$project->total_team}}</div>
-            </div>
+        @if($project->current_team == $project->total_team)
+            <h1 class="title_project">Equipo completo</h1>
+        @else
+            <h1 class="title_project">Sitios disponibles {{$project->current_team}} / {{$project->total_team}}</h1>
 
-            <a class="container_right" href="{{ route('join_project', $project->id) }}">
+            <a class="container_right mt-6 mb-6" href="{{ route('join_project', $project->id) }}">
                 <button class="btn_join">
-                    UNIRME AL EQUIPO
+                    UNIRME
                 </button>
             </a>
-        </div>
+        @endif
 
         <h3 class="description_title">Descripción</h3>
         <p class="description_project">{{$project->description}}</p>
