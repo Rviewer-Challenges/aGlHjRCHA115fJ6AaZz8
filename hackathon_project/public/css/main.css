@@ -53,32 +53,6 @@ div .title_container {
     word-break: normal;
 }
 
-.test {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    border-radius: 0;
-    border-style: none;
-    box-sizing: inherit;
-    caret-color: auto;
-    color: rgba(0, 0, 0, 0.87);
-    cursor: text;
-    flex: 1 1 auto;
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
-    font-weight: inherit;
-    letter-spacing: normal;
-    line-height: 20px;
-    margin: 0;
-    max-height: 32px;
-    max-width: 100%;
-    min-width: 0;
-    padding: 8px 0;
-    tab-size: 4;
-    text-align: left;
-    width: 100%;
-    word-break: normal;
-}
-
 .product_tour_container {
     display: flex;
     flex-wrap: wrap;
@@ -120,7 +94,7 @@ div .title_container {
 }
 
 /* Mobile */
-@media only screen and (max-width: 575px){
+@media only screen and (max-width: 1400px){
     .product_tour_element {
         width: 100%;
         min-height: 300px;
