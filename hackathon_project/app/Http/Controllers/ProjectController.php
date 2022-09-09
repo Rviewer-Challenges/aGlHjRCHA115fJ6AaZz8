@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Mail\CreateProject;
+use App\Mail\JoinProjectAdmin;
 use App\Mail\JoinProyect;
 use App\Mail\Welcome;
 use App\Models\Category;
@@ -168,7 +169,6 @@ class ProjectController extends Controller
      */
     public function join($id)
     {
-
         return view('projects.join', ['project_id' => $id]);
     }
 
@@ -208,7 +208,10 @@ class ProjectController extends Controller
             $project = Project::find($request['project_id']);
             $project->users()->attach($user->id);
 
+            $manager = User::find($project['user_id']);
+
             Mail::to($user->email)->send(new JoinProyect($user->name, $project->title, $request['why'], $request['share'], $request['experience']));
+            Mail::to($manager->email)->send(new JoinProjectAdmin($manager->name, $project->title, $request['why'], $request['share'], $request['experience'], $user->email));
 
         }catch(Exception $e){
             return view('projects.join', ['message' => __('views.error_join_project'), 'status' => 'error', 'project_id' => $request['project_id']]);
