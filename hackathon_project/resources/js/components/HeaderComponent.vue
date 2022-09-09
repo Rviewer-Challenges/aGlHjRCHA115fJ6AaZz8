@@ -76,7 +76,7 @@
             </button>
         </a>
 
-        <a href="/" v-if="auth">
+        <a :href="'/account/'+userId" v-if="auth">
             <button class="btn-login">
                 Mi cuenta
             </button>
@@ -95,6 +95,6 @@
 
 <script>
     export default {
-        props: ['auth']
+        props: ['auth', 'userId']
     }
 </script>

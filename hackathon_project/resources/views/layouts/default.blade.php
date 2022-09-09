@@ -17,7 +17,7 @@
         <div id="app">
             <v-app app>
                 <v-container style="width: 60%;">
-                    <header-component auth="{{Auth::user()}}"></header-component>
+                    <header-component auth="{{Auth::user()}}" user-id="{{Auth::id()}}"></header-component>
                     @yield('content')
                 </v-container>
 
