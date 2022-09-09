@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
+use App\Mail\CreateProject;
 use App\Mail\Welcome;
 use App\Models\Category;
 use App\Models\Project;
@@ -86,6 +87,8 @@ class ProjectController extends Controller
 
             $categories = explode(",", $request['category']);
             $new_project->categories()->attach($categories);
+
+            Mail::to($request['email'])->send(new CreateProject($user->name, $new_project->title));
 
         }catch(Exception $e){
             return view('projects.create', ['message' => __('views.error_create_project',), 'status' => 'error', 'categories' => $categories_original]);
