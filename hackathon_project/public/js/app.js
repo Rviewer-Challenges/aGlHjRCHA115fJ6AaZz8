@@ -5421,7 +5421,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['auth', 'userId']
+  props: ['auth', 'userId'],
+  data: function data() {
+    return {
+      is_mobile: false
+    };
+  },
+  created: function created() {
+    this.is_mobile = this.isMobile();
+  },
+  methods: {
+    isMobile: function isMobile() {
+      return navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/BlackBerry/i);
+    }
+  }
 });
 
 /***/ }),
@@ -6043,25 +6056,60 @@ var render = function render() {
       "max-width": "110",
       src: "/images/logo_uniontask.png"
     }
-  })], 1)], 1), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("a", {
+  })], 1)], 1), _vm._v(" "), _c("v-spacer"), _vm._v(" "), !_vm.is_mobile ? _c("a", {
     attrs: {
       href: "/projects/create"
     }
   }, [_c("button", {
     staticClass: "btn-custom"
-  }, [_vm._v("\n            Crear proyecto\n        ")])]), _vm._v(" "), _vm.auth ? _c("a", {
+  }, [_vm._v("\n            Crear proyecto\n        ")])]) : _vm._e(), _vm._v(" "), _vm.auth && !_vm.is_mobile ? _c("a", {
     attrs: {
       href: "/account/" + _vm.userId
     }
   }, [_c("button", {
     staticClass: "btn-login"
-  }, [_vm._v("\n            Mi cuenta\n        ")])]) : _c("a", {
+  }, [_vm._v("\n            Mi cuenta\n        ")])]) : _vm._e(), _vm._v(" "), !_vm.auth && !_vm.is_mobile ? _c("a", {
     attrs: {
       href: "/login"
     }
   }, [_c("button", {
     staticClass: "btn-login"
-  }, [_vm._v("\n            Iniciar sesión\n        ")])])], 1)], 1);
+  }, [_vm._v("\n            Iniciar sesión\n        ")])]) : _vm._e(), _vm._v(" "), _vm.is_mobile ? _c("v-menu", {
+    attrs: {
+      left: "",
+      bottom: ""
+    },
+    scopedSlots: _vm._u([{
+      key: "activator",
+      fn: function fn(_ref) {
+        var on = _ref.on,
+            attrs = _ref.attrs;
+        return [_c("v-btn", _vm._g(_vm._b({
+          attrs: {
+            icon: ""
+          }
+        }, "v-btn", attrs, false), on), [_c("v-icon", [_vm._v("mdi-menu")])], 1)];
+      }
+    }], null, false, 2322017526)
+  }, [_vm._v(" "), _c("v-list", [_c("v-list-item", [_c("v-list-item-title", [_c("a", {
+    attrs: {
+      href: "/login"
+    }
+  }, [_c("button", {
+    staticClass: "btn-login"
+  }, [_vm._v("\n                        Iniciar sesión\n                    ")])]), _vm._v(" "), _c("br"), _c("br"), _vm._v(" "), _vm.auth ? _c("a", {
+    attrs: {
+      href: "/account/" + _vm.userId
+    }
+  }, [_c("button", {
+    staticClass: "btn-login"
+  }, [_vm._v("\n                        Mi cuenta\n                    ")]), _vm._v(" "), _c("br"), _c("br")]) : _vm._e(), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/projects/create"
+    }
+  }, [_c("button", {
+    staticClass: "btn-custom"
+  }, [_vm._v("\n                        Crear proyecto\n                    ")])])])], 1)], 1)], 1) : _vm._e()], 1)], 1);
 };
 
 var staticRenderFns = [];
