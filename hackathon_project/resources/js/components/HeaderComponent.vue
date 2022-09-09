@@ -56,10 +56,16 @@
     <div>
       <v-app-bar
         color="white"
-        elevate-on-scroll
+        elevation="0"
       >
         <a :href="'/'" style="text-decoration:none; color:black;">
-            <v-toolbar-title>UNION TASK</v-toolbar-title>
+            <v-toolbar-title>
+                <v-img
+                max-height="120"
+                max-width="110"
+                :src="'/images/logo_uniontask.png'"
+                ></v-img>
+            </v-toolbar-title>
         </a>
 
         <v-spacer></v-spacer>

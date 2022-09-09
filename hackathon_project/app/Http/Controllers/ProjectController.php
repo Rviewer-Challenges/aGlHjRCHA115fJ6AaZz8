@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
+use App\Mail\CreateProject;
+use App\Mail\JoinProjectAdmin;
+use App\Mail\JoinProyect;
+use App\Mail\Welcome;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\User;
@@ -11,6 +15,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -59,11 +64,16 @@ class ProjectController extends Controller
             $user = Auth::user();
 
             if(!$user){
+
+                $password = rand(100000, 999999);
+
                 $user = User::create([
                     'name' => $request['name'],
                     'email' => $request['email'],
-                    'password' => Hash::make(rand(100000, 999999))
+                    'password' => Hash::make($password)
                 ]);
+
+                Mail::to($user->email)->send(new Welcome($user->name, $user->email, $password));
             }
 
             $new_project = Project::create([
@@ -79,6 +89,8 @@ class ProjectController extends Controller
 
             $categories = explode(",", $request['category']);
             $new_project->categories()->attach($categories);
+
+            Mail::to($user->email)->send(new CreateProject($user->name, $new_project->title));
 
         }catch(Exception $e){
             return view('projects.create', ['message' => __('views.error_create_project',), 'status' => 'error', 'categories' => $categories_original]);
@@ -137,12 +149,14 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function all(){
+    public function all()
+    {
 
         return view('projects.all');
     }
 
-    public function all_api(){
+    public function all_api()
+    {
 
         $projects = Project::all();
         return $projects;
@@ -153,8 +167,8 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function join($id){
-
+    public function join($id)
+    {
         return view('projects.join', ['project_id' => $id]);
     }
 
@@ -163,7 +177,8 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function join_post(Request $request){
+    public function join_post(Request $request)
+    {
 
         if($request['email']){
             $user_exists = User::where('email', $request['email'])->first();
@@ -178,15 +193,25 @@ class ProjectController extends Controller
             $user = Auth::user();
 
             if(!$user){
+
+                $password = rand(100000, 999999);
+
                 $user = User::create([
                     'name' => $request['name'],
                     'email' => $request['email'],
-                    'password' => Hash::make(rand(100000, 999999))
+                    'password' => Hash::make($password)
                 ]);
 
-                $project = Project::find($request['project_id']);
-                $project->users()->attach($user->id);
+                Mail::to($user->email)->send(new Welcome($user->name, $user->email, $password));
             }
+
+            $project = Project::find($request['project_id']);
+            $project->users()->attach($user->id);
+
+            $manager = User::find($project['user_id']);
+
+            Mail::to($user->email)->send(new JoinProyect($user->name, $project->title, $request['why'], $request['share'], $request['experience']));
+            Mail::to($manager->email)->send(new JoinProjectAdmin($manager->name, $project->title, $request['why'], $request['share'], $request['experience'], $user->email));
 
         }catch(Exception $e){
             return view('projects.join', ['message' => __('views.error_join_project'), 'status' => 'error', 'project_id' => $request['project_id']]);

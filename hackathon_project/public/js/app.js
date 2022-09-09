@@ -6027,7 +6027,7 @@ var render = function render() {
   return _c("div", [_c("v-app-bar", {
     attrs: {
       color: "white",
-      "elevate-on-scroll": ""
+      elevation: "0"
     }
   }, [_c("a", {
     staticStyle: {
@@ -6037,7 +6037,13 @@ var render = function render() {
     attrs: {
       href: "/"
     }
-  }, [_c("v-toolbar-title", [_vm._v("UNION TASK")])], 1), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("a", {
+  }, [_c("v-toolbar-title", [_c("v-img", {
+    attrs: {
+      "max-height": "120",
+      "max-width": "110",
+      src: "/images/logo_uniontask.png"
+    }
+  })], 1)], 1), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("a", {
     attrs: {
       href: "/projects/create"
     }
