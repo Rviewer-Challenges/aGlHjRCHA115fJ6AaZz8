@@ -253,11 +253,24 @@
                                     <br>
 									<p style="margin: 0;">¡Gracias por hacer crecer la comunidad de <strong>UNION TASK</strong>!</p>
                                     <br>
-                                    <p style="margin: 0;">Tu proyecto <strong>{{$name_project}}</strong> ha sido creado con éxito. A partir de ahora, podrás recibir solicitudes de otros desarrolladores que deseen ayudarte en el desarrollo de tu proyecto.</p>
+                                    <p style="margin: 0;">Tu solicitud para el proyecto <strong>{{$name_project}}</strong> ha sido enviada con éxito. A partir de ahora, el jefe de proyecto valorará tu solicitud y se pondrá en contacto contigo.</p>
                                     <br>
-                                    <p style="margin: 0;">Podrás gestionar tu proyecto iniciando sesión. Además, de gestionar los integrantes de tu equipo.</p>
+                                    <p style="margin: 0;">Podrás ver el avance de tu solicitud dentro de tu perfil, iniciando sesión. Además, de poder gestionar tus proyectos publicados o los proyectos a los que perteneces.</p>
                                     <br>
-                                    <p style="margin: 0;"><strong>Importante: </strong> Si la publicación contiene contenido no deseado, el proyecto sera eliminado por un administrador.</p>
+                                    <p style="margin: 0;">Aquí tienes la copia de los mensajes que recibirá el jefe de proyecto:</p>
+                                    <br>
+                                    <p style="margin: 0;"><strong>¿Por qué quieres unirte al proyecto?</strong></p>
+                                    <br>
+                                    <p style="margin: 0;">{{$why}}</p>
+                                    <br>
+                                    <p style="margin: 0;"><strong>¿Qué aportaras al proyecto?</strong></p>
+                                    <br>
+                                    <p style="margin: 0;">{{$share}}</p>
+                                    <br>
+                                    <p style="margin: 0;"><strong>¿Tienes experiencia con las tecnologías que solicitan, o similares?</strong></p>
+                                    <br>
+                                    <p style="margin: 0;">{{$experience}}</p>
+                                    <br>
 								</td>
 							</tr>
 							<!-- Clear Spacer : BEGIN -->
