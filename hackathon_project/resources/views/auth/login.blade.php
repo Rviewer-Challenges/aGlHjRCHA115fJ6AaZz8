@@ -11,6 +11,14 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        <center>
+                            <div class="alert alert-warning" role="alert">
+                                Para obtener acceso a la plataforma es necesario unirse a un proyecto o crear uno. Se te creará una cuenta de forma automática.
+                            </div>
+                        </center>
+
+                        <br>
+
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">Correo electrónico</label>
 
