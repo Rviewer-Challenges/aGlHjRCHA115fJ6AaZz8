@@ -33,7 +33,7 @@ class CreateProject extends Mailable
      */
     public function build()
     {
-        return $this->from('uniontask@outlook.es', 'UNION TASK')
+        return $this->from('uniontask@singuland.org', 'UNION TASK')
         ->subject('Tu proyecto ha sido creado')
         ->view('mails.create_project')->with([
             'name' => $this->name,

@@ -40,7 +40,7 @@ class JoinProjectAdmin extends Mailable
      */
     public function build()
     {
-        return $this->from('uniontask@outlook.es', 'UNION TASK')
+        return $this->from('uniontask@singuland.org', 'UNION TASK')
         ->subject('Nueva solicitud para unirse a tu proyecto')
         ->view('mails.join_project_admin')->with([
             'name' => $this->name,
