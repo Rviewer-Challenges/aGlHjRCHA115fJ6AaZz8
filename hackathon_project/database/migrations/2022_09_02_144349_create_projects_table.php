@@ -25,7 +25,6 @@ class CreateProjectsTable extends Migration
             $table->integer('current_team')->default(0);
             $table->integer('total_team')->nullable(false);
             $table->boolean('active')->default(0);
-            $table->date('expiration_date')->nullable(false);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
