@@ -9,8 +9,6 @@ use Tests\TestCase;
 
 class ProjectTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * Test get projects
      *
