@@ -1,0 +1,117 @@
+.main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.container_team {
+    display: flex;
+    width: 80%;
+    margin-top: 35px;
+    background: rgb(94, 155, 160);
+    border-radius: 50px;
+}
+
+.title_project {
+    font-size: 60px;
+    font-weight: 600;
+    color: rgb(94, 155, 160);
+}
+
+.description_title {
+    align-self: flex-start;
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(94, 155, 160);
+}
+
+.description_project {
+    margin-top: 20px;
+    text-align: justify;
+}
+
+.container_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.container_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    text-decoration: none;
+}
+
+.btn_join {
+    width: 60%;
+    border: solid 1px #F9BE01;
+    border-radius: 60px;
+    background: #F9BE01;
+    height: 80px;
+    font-weight: 600;
+}
+
+.text_team {
+    width: 60%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.container_tags {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.custom_card_tag {
+    background-color: #FFFFFF;
+    border: 1px solid #ECF3FB;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-right: 20px;
+}
+
+.text_card_tag {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+/* Mobile */
+@media only screen and (max-width: 1400px){
+
+    .title_project {
+        font-size: 40px;
+        text-align: center;
+        font-weight: 600;
+        color: rgb(94, 155, 160);
+    }
+
+    .description_title {
+        align-self: flex-start;
+        text-align: center;
+        margin-top: 50px;
+        font-size: 30px;
+        font-weight: 600;
+        color: rgb(94, 155, 160);
+    }
+
+    .description_project {
+        margin-top: 20px;
+        text-align: center;
+    }
+}
