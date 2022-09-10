@@ -35,7 +35,7 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->from('uniontask@outlook.es', 'UNION TASK')
+        return $this->from('uniontask@singuland.org', 'UNION TASK')
         ->subject('Bienvenido')
         ->view('mails.welcome')->with([
             'name' => $this->name,

@@ -38,7 +38,7 @@ class JoinProyect extends Mailable
      */
     public function build()
     {
-        return $this->from('uniontask@outlook.es', 'UNION TASK')
+        return $this->from('uniontask@singuland.org', 'UNION TASK')
         ->subject('Solicitud de inscripción a un proyecto')
         ->view('mails.join_project')->with([
             'name' => $this->name,
