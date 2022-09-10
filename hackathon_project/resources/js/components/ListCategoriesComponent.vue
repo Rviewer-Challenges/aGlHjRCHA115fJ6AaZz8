@@ -37,6 +37,28 @@
         font-size: 16px;
         font-weight: 800;
     }
+
+    /* Mobile */
+@media only screen and (max-width: 1400px){
+    .container_categories {
+        margin-top: 30px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .custom_card_categories {
+        background-color: #FFFFFF;
+        border: 1px solid #ECF3FB;
+        border-radius: 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+        padding: 1rem;
+        margin-bottom: 10px;
+    }
+}
 </style>
 
 <template>
