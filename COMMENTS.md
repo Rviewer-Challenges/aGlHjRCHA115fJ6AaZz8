@@ -19,3 +19,7 @@ He utilizado un formulario sencillo, para evitar que el usuario se lleve demasia
 #### Unirse a un proyecto
 
 Al igual que al crear un proyecto, para unirse solo se deben de responder a unas sencillas preguntas, las cuales pueden ser utiles para el administardor del proyecto, para determinar si el futuro integrante es valido o no. 
+
+#### ACCESO A LA PLATAFORMA
+
+http://uniontask.singuland.org/
