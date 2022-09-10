@@ -5314,7 +5314,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['message', 'status', 'auth', 'categories'],
+  props: ['message', 'status', 'auth', 'categories', 'loading'],
   data: function data() {
     return {
       valid: true,
@@ -5329,6 +5329,7 @@ __webpack_require__.r(__webpack_exports__);
       category: '',
       hidden: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      is_loading: 0,
       titleRules: [function (v) {
         return !!v || 'Nombre del proyecto es obligatorio';
       }, function (v) {
@@ -5375,6 +5376,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    if (this.loading) {
+      this.is_loading = this.loading;
+    }
+
     if (this.auth) {
       this.hidden = true;
     } else {
@@ -5386,6 +5391,7 @@ __webpack_require__.r(__webpack_exports__);
       var is_valid = this.$refs.form.validate();
 
       if (is_valid) {
+        this.is_loading = 1;
         this.$refs.form.$el.submit();
       }
     }
@@ -5451,7 +5457,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['message', 'status', 'auth', 'projectId'],
+  props: ['message', 'status', 'auth', 'projectId', 'loading'],
   data: function data() {
     return {
       valid: true,
@@ -5463,6 +5469,7 @@ __webpack_require__.r(__webpack_exports__);
       hidden: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       dialog: false,
+      is_loading: 0,
       nameRules: [function (v) {
         return !!v || 'Tu nombre es obligatorio';
       }, function (v) {
@@ -5491,6 +5498,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    if (this.loading) {
+      this.is_loading = this.loading;
+    }
+
     if (this.auth) {
       this.hidden = true;
     } else {
@@ -5506,6 +5517,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     join: function join() {
+      this.is_loading = 1;
       this.$refs.form.$el.submit();
     }
   }
@@ -5959,7 +5971,12 @@ var render = function render() {
       cols: "12",
       md: "12"
     }
-  }, [_c("v-btn", {
+  }, [_vm.is_loading == 1 ? _c("center", [_c("v-progress-circular", {
+    attrs: {
+      indeterminate: "",
+      color: "amber"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _c("v-btn", {
     staticClass: "mr-4 white--text",
     staticStyle: {
       width: "100%"
@@ -6357,7 +6374,12 @@ var render = function render() {
           staticClass: "text-h7 pa-9"
         }, [_c("strong", [_vm._v("Si aceptas unirte")]), _vm._v(", se le enviará un correo al administrador del proyecto para validar tu incorporación. Él se pondrá en contacto contigo.")]) : _vm._e()]), _vm._v(" "), _c("v-card-actions", {
           staticClass: "justify-end"
-        }, [_c("v-btn", {
+        }, [_vm.is_loading == 1 ? _c("v-progress-circular", {
+          attrs: {
+            indeterminate: "",
+            color: "amber"
+          }
+        }) : _vm._e(), _vm._v(" "), _c("v-btn", {
           attrs: {
             text: "",
             color: "rgb(94, 155, 160)"

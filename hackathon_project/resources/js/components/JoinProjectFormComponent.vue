@@ -177,6 +177,13 @@
                 <div class="text-h7 pa-9" v-if="hidden"><strong>Si aceptas unirte</strong>, se le enviará un correo al administrador del proyecto para validar tu incorporación. Él se pondrá en contacto contigo.</div>
                 </v-card-text>
                 <v-card-actions class="justify-end">
+
+                <v-progress-circular
+                v-if="is_loading == 1"
+                indeterminate
+                color="amber"
+                ></v-progress-circular>
+
                 <v-btn
                     text
                     color="rgb(94, 155, 160)"
@@ -196,7 +203,7 @@
 
 <script>
     export default {
-        props: ['message', 'status', 'auth', 'projectId'],
+        props: ['message', 'status', 'auth', 'projectId', 'loading'],
 
         data: () => ({
             valid: true,
@@ -208,6 +215,7 @@
             hidden: false,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             dialog: false,
+            is_loading: 0,
 
             nameRules: [
             v => !!v || 'Tu nombre es obligatorio',
@@ -233,6 +241,10 @@
 
         created() {
 
+            if(this.loading){
+                this.is_loading = this.loading;
+            }
+
             if(this.auth){
                 this.hidden = true;
             }else{
@@ -250,6 +262,7 @@
             },
 
             join(){
+                this.is_loading = 1;
                 this.$refs.form.$el.submit()
             }
     }

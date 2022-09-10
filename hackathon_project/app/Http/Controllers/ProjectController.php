@@ -55,7 +55,7 @@ class ProjectController extends Controller
             $user_exists = User::where('email', $request['email'])->first();
 
             if($user_exists) {
-                return view('projects.create', ['message' => __('views.user_created',), 'status' => 'error', 'categories' => $categories_original]);
+                return view('projects.create', ['message' => __('views.user_created',), 'status' => 'error', 'categories' => $categories_original, 'loading' => 0]);
             }
         }
 
@@ -93,10 +93,10 @@ class ProjectController extends Controller
             Mail::to($user->email)->send(new CreateProject($user->name, $new_project->title));
 
         }catch(Exception $e){
-            return view('projects.create', ['message' => __('views.error_create_project',), 'status' => 'error', 'categories' => $categories_original]);
+            return view('projects.create', ['message' => __('views.error_create_project',), 'status' => 'error', 'categories' => $categories_original, 'loading' => 0]);
         }
 
-        return view('projects.create', ['message' => __('views.success_create_project',), 'status' => 'success', 'categories' => $categories_original]);
+        return view('projects.create', ['message' => __('views.success_create_project',), 'status' => 'success', 'categories' => $categories_original, 'loading' => 0]);
     }
 
     /**
@@ -187,7 +187,7 @@ class ProjectController extends Controller
             $user_exists = User::where('email', $request['email'])->first();
 
             if($user_exists) {
-                return view('projects.join', ['message' => __('views.user_created'), 'status' => 'error', 'project_id' => $request['project_id']]);
+                return view('projects.join', ['message' => __('views.user_created'), 'status' => 'error', 'project_id' => $request['project_id'], 'loading' => 0]);
             }
         }
 
@@ -217,9 +217,9 @@ class ProjectController extends Controller
             Mail::to($manager->email)->send(new JoinProjectAdmin($manager->name, $project->title, $request['why'], $request['share'], $request['experience'], $user->email));
 
         }catch(Exception $e){
-            return view('projects.join', ['message' => __('views.error_join_project'), 'status' => 'error', 'project_id' => $request['project_id']]);
+            return view('projects.join', ['message' => __('views.error_join_project'), 'status' => 'error', 'project_id' => $request['project_id'],'loading' => 0]);
         }
 
-        return view('projects.join', ['message' => __('views.success_join_project'), 'status' => 'success', 'project_id' => $request['project_id']]);
+        return view('projects.join', ['message' => __('views.success_join_project'), 'status' => 'success', 'project_id' => $request['project_id'],'loading' => 0]);
     }
 }

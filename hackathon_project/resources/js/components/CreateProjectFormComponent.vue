@@ -189,6 +189,14 @@
                 cols="12"
                 md="12"
             >
+
+            <center v-if="is_loading == 1">
+                <v-progress-circular
+                indeterminate
+                color="amber"
+                ></v-progress-circular>
+            </center>
+
             <v-btn
                 color="rgb(94, 155, 160)"
                 class="mr-4 white--text"
@@ -205,7 +213,7 @@
 
 <script>
     export default {
-        props: ['message', 'status', 'auth', 'categories'],
+        props: ['message', 'status', 'auth', 'categories', 'loading'],
 
         data: () => ({
             valid: true,
@@ -220,6 +228,7 @@
             category: '',
             hidden: false,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            is_loading: 0,
 
             titleRules: [
             v => !!v || 'Nombre del proyecto es obligatorio',
@@ -260,6 +269,10 @@
 
         created() {
 
+            if(this.loading){
+                this.is_loading = this.loading;
+            }
+
             if(this.auth){
                 this.hidden = true;
             }else{
@@ -272,6 +285,7 @@
                 let is_valid = this.$refs.form.validate();
 
                 if(is_valid) {
+                    this.is_loading = 1;
                     this.$refs.form.$el.submit()
                 }
             },
