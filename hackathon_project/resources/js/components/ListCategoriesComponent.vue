@@ -15,6 +15,7 @@
         cursor: pointer;
         padding: 1rem;
         margin-right: 20px;
+        margin-bottom: 10px;
     }
 
     .custom_card_categories:after{
