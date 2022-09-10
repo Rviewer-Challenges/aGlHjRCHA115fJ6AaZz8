@@ -7,7 +7,7 @@
         <p class="subtitle_home">@lang('views.subtitle_join')</p>
     </div>
 
-    <join-project-component auth="{{Auth::user()}}" project-id="{{$project_id}}" message="{{isset($message) ? $message : 0}}" status="{{isset($status) ? $status : 0}}"></join-project-component>
+    <join-project-component loading={{isset($loading) ? $loading : 0}} auth="{{Auth::user()}}" project-id="{{$project_id}}" message="{{isset($message) ? $message : 0}}" status="{{isset($status) ? $status : 0}}"></join-project-component>
 
 @endsection
 
