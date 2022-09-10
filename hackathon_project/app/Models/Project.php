@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,5 +35,10 @@ class Project extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'projects_users', 'project_id', 'user_id');
+    }
+
+    protected static function newFactory()
+    {
+        return ProjectFactory::new();
     }
 }
