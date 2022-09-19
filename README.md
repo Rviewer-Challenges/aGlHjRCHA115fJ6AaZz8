@@ -1,3 +1,5 @@
+SE ESTA TRABAJANDO EN UNA NUEVA PLATAFORMA
+
 ACCESO A LA PLATAFORMA
 http://uniontask.singuland.org/
 
